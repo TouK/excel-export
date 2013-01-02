@@ -15,12 +15,12 @@ class XlsxExporter {
     public static final String sheetName = "Report"
     @PackageScope static final String defaultDateFormat = "yyyy/mm/dd h:mm:ss"
 
-    private CellStyle dateCellStyle
-    private String fileNameWithPath
-    private CreationHelper creationHelper
-    @PackageScope XSSFWorkbook workbook
-    public Sheet sheet
-    private OPCPackage zipPackage
+    protected CellStyle dateCellStyle
+    protected String fileNameWithPath
+    protected CreationHelper creationHelper
+    protected XSSFWorkbook workbook
+    protected Sheet sheet
+    protected OPCPackage zipPackage
 
     XlsxExporter() {
         this.workbook = new XSSFWorkbook()
