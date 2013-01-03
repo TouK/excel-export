@@ -1,6 +1,3 @@
-excel-export
-============
-
 This is excel-export Grails plugin using Apache POI
 
 #What does it do?
@@ -11,9 +8,9 @@ It exports your objects to an xlsx (MS Excel 2007+) file, while still allowing y
 
 There are two scenarios on which this plugin was created:
 
-1. When your customer says: 'I want 100 reports in this new project' and nobody has any clue what those reports look like, you can use this plugin as a DSL, i.e. tell your client 'Hey, I've got good news. We have a nice DSL for you, so that you can write all those reports yourself. And it's free!' (or charge them anyway).
+1. When you want to export data from your controllers ('download to excel' button) and want to maintain full control of how you handle this data.
 
-2. When you want to export data from your controllers ('download to excel' button) and want to maintain full control of how you handle this data.
+2. When your customer says: 'I want 100 reports in this new project' and nobody has any clue what those reports look like, you can use this plugin as a DSL, i.e. tell your client 'Hey, I've got good news. We have a nice DSL for you, so that you can write all those reports yourself. And it's free!' (or charge them anyway).
 
 In both cases you can export either to a file on disk, or to outputStream (download as xlsx).
 
@@ -170,7 +167,7 @@ you are going to override it.
 
 #How to get it installed?
 
-Ok, it's released http://maven.touk.pl.
+Ok, it's released here: http://maven.touk.pl
 
 Here is what you need to add to your BuildConfig.groovy
 
@@ -195,12 +192,7 @@ Excluding xerces may or may not be needed, depending on your setup. If you get
 
     Error executing script RunApp: org/apache/xerces/dom/DeferredElementImpl (Use --stacktrace to see the full trace)
 
-or
-
-    Error executing script RunApp: org/apache/xerces/dom/DeferredElementImpl (NOTE: Stack trace has been filtered. Use --verbose to see entire trace.)
-    java.lang.NoClassDefFoundError: org/apache/xerces/dom/DeferredElementImpl
-
-You NEED to exclude xercesImpl to use ApachePOI. Don't worry, it won't break anything.
+you NEED to exclude xercesImpl to use ApachePOI. Don't worry, it won't break anything.
 
 If you have more strange problems with xml and you are using Java 7, exclude xml-apis as well:
 
@@ -211,6 +203,7 @@ If you have more strange problems with xml and you are using Java 7, exclude xml
         }
     ...
 
+If you want a working example, clone this project: https://github.com/TouK/excel-export-samples
 
 #Are there any other libs like this?
 
@@ -218,9 +211,9 @@ Yeah, there's plenty of them. But most were too simplistic or too 'automagical' 
 
 Hope it helps.
 
-#Licence?
+#Licence
 
-Apache
+Apache Licence v2.0
 
 
 
