@@ -123,8 +123,8 @@ You can do more though. To i18n values, use MessageFromPropertyGetter:
         def export() {
             List<Product> products = productFactory.createProducts()
 
-            def headers = ['name', 'currency', 'value']
-            def withProperties = ['name', new CurrencyGetter('price.currency'), 'price.value']
+            def headers = ['name', 'type', 'value']
+            def withProperties = ['name', new MessageFromPropertyGetter(messageSource, 'type'), 'price.value']
 
             new WebXlsxExporter().with {
                 setResponseHeaders(response)
@@ -203,11 +203,31 @@ If you have more strange problems with xml and you are using Java 7, exclude xml
         }
     ...
 
+To understand why you need to exclude anything, please take a look here: http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
+
 If you want a working example, clone this project: https://github.com/TouK/excel-export-samples
 
 #Are there any other libs like this?
 
-Yeah, there's plenty of them. But most were too simplistic or too 'automagical' for my needs. Apache POI is pretty simple to use itself (and has fantastic API) but we needed something even simpler for several projects. Also a bit DSL-like so our customers could write reports on their own. And this is what we ended up with.
+Yeah, there's plenty of them. But most were too simplistic or too 'automagical' for my needs. Apache POI is pretty simple to use itself (and has fantastic API) but we needed something even simpler for several projects. Also a bit DSL-like so our customers could write reports on their own. After preparing a few getters for our custom objects, this is what we ended up with:
+
+    def withProperties = ["id", "name", "inProduction", "workLogCount", "createdAt", "createdAtDate", asDate("firstEventTime"),
+        firstUnacknowledgedTime(), firstUnacknowledged(), firstTakeOwnershipTime(), firstTakeOwnership(),
+        firstReleaseOwnershipTime(), firstReleaseOwnership(), firstClearedTime(), firstCleared(),
+        firstDeferedTime(), firstDefered(), firstUndeferedTime(), firstUndefered(), childConnectedTime(), childConnected(),
+        parentConnectedTime(), parentConnected(), parentDisconnectedTime(), parentDisconnected(),
+        childDisconnectedTime(), childDisconnected(), childOrphanedTime(), childOrphaned(), createdTime(), created(),
+        updatedTime(), updated(), workLogAddedTime(), workLogAdded()]
+
+    def reporter = new XlsxReporter("/tmp/sampleTemplate.xlsx")
+
+    reporter.with {
+            fillHeader withProperties
+            add events, withProperties
+            save "/tmp/sampleReport1.xlsx"
+    }
+
+All the methods in 'withProperties' are static imports generating a new instance of a corresponding PropertyGetter implementation. To our surprise, this worked really well with some clients, who started writing their own reports instead of paying us for doing the boring work.
 
 Hope it helps.
 

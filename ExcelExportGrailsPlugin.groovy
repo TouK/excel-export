@@ -14,12 +14,10 @@ class ExcelExportGrailsPlugin {
     def title = "Excel Export Plugin" // Headline display name of the plugin
     def author = "Jakub Nabrdalik"
     def authorEmail = "jakubn@gmail.com"
-    def description = '''\
-This plugin helps you export data in Excel (xlsx) format, using Apache POI.
-'''
+    def description = 'This plugin helps you export data in Excel (xlsx) format, using Apache POI.'
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/excel-export"
+    def documentation = "https://github.com/TouK/excel-export/blob/master/README.md"
 
     // Extra (optional) plugin metadata
 
@@ -30,13 +28,13 @@ This plugin helps you export data in Excel (xlsx) format, using Apache POI.
     def organization = [ name: "TouK", url: "http://touk.pl/" ]
 
     // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
+    def developers = [ [ name: "Jakub Nabrdalik", email: "jakubn@gmail.com" ]]
 
     // Location of the plugin's issue tracker.
-//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
+    def issueManagement = [ system: "Github", url: "https://github.com/TouK/excel-export/issues" ]
 
     // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
+    def scm = [ url: "https://github.com/TouK/excel-export" ]
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before
