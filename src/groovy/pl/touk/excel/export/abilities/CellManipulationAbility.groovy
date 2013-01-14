@@ -1,5 +1,4 @@
 package pl.touk.excel.export.abilities
-import groovy.transform.PackageScope
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.util.CellUtil
 import org.apache.poi.xssf.usermodel.XSSFCell
@@ -8,7 +7,7 @@ import pl.touk.excel.export.XlsxExporter
 import pl.touk.excel.export.getters.Getter
 
 @Category(XlsxExporter)
-@PackageScope class CellManipulationAbility {
+class CellManipulationAbility {
     XSSFCell getCellAt(int rowNumber, int columnNumber) {
         XSSFRow row = getOrCreateRow(rowNumber, sheet)
         row.getCell((Short) columnNumber)
