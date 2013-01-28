@@ -1,10 +1,8 @@
 package pl.touk.excel.export
-
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.junit.Test
-import pl.touk.excel.export.getters.Getter
 
 import static pl.touk.excel.export.Formatters.asDate
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 class XlsxExporterRowTest extends XlsxExporterTest {
     List<String> allPropertiesToBeAdded = ["stringValue", "dateValue", "longValue", "booleanValue", asDate("dateAsLong"), "notExistingValue", "child.stringValue",
@@ -14,7 +12,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
     @Test
     void shouldFillRowAtFirstPosition() throws IOException {
         //given
-        List<Getter> rowValues = ["First", "Second", "Third", " "]
+        List rowValues = ["First", "Second", "Third", " "]
 
         //when
         xlsxReporter.fillRow(rowValues)
@@ -27,7 +25,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
     @Test
     void shouldFillRowAtPosition() throws IOException {
         //given
-        List<Getter> rowValues = ["First", "Second", "Third", " "]
+        List rowValues = ["First", "Second", "Third", " "]
         int rowNumber = 15
 
         //when
@@ -41,7 +39,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
     @Test
     void shouldFillRowAtPositionWithZero() throws IOException {
         //given
-        List<Getter> rowValues = [0]
+        List rowValues = [0]
         int rowNumber = 25
 
         //when

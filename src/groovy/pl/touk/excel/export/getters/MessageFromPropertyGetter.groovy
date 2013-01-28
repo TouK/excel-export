@@ -26,6 +26,6 @@ class MessageFromPropertyGetter implements Getter {
     }
 
     Object getFormattedValue(Object object) {
-        return messageSource.getMessage(object.getProperties().get(propertyName), [].toArray(), locale)
+        return messageSource.getMessage(object.getProperties().get(propertyName), [].toArray(), object.getProperties().get(propertyName), locale)
     }
 }
