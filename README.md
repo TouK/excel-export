@@ -167,8 +167,7 @@ you are going to override it.
 
 #How to get it installed?
 
-Ok, it's released here: http://maven.touk.pl
-
+The plugin is released like all other Grails plugins, to grailsPlugin repo.
 Here is what you need to add to your BuildConfig.groovy
 
     grails.project.dependency.resolution = {
@@ -183,7 +182,7 @@ Here is what you need to add to your BuildConfig.groovy
         }
 
         plugins {
-            runtime ":excel-export:0.1"     //#3 important thing
+            runtime (":excel-export:0.1.4")     //#3 important thing
             ...
         }
     ...
