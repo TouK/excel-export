@@ -164,6 +164,16 @@ If you just open an existing file, and save it, like this:
 
 you are going to override it.
 
+#But I don't want no template (for whatever reason)
+
+Ok, so if you don't want to use a temple, but want to format a cell style directly in the code, you can still do that.
+
+You can get the cell style like this:
+
+        xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString()
+
+and of course you have a corresponding setCellStyle method, but this is pure Apache POI, not my plugin, so you have the documentation here: http://poi.apache.org/apidocs/org/apache/poi/xssf/usermodel/XSSFCell.html
+
 
 #How to get it installed?
 
@@ -176,13 +186,8 @@ Here is what you need to add to your BuildConfig.groovy
             excludes 'xercesImpl'   //#1 important thing
         }
 
-        repositories {
-            mavenRepo("http://maven.touk.pl/nexus/content/repositories/releases")   //#2 important thing
-            ...
-        }
-
         plugins {
-            runtime (":excel-export:0.1.4")     //#3 important thing
+            runtime (":excel-export:0.1.4")     //#2 important thing
             ...
         }
     ...
