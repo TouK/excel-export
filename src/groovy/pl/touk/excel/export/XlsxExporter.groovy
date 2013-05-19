@@ -12,7 +12,8 @@ import pl.touk.excel.export.abilities.RowManipulationAbility
 
 @Mixin([RowManipulationAbility, CellManipulationAbility, FileManipulationAbility])
 class XlsxExporter {
-    public static final String sheetName = "Report"
+    static final String sheetName = "Report"
+    protected static final String FILENAME_SUFFIX = ".xlsx"
     @PackageScope static final String defaultDateFormat = "yyyy/mm/dd h:mm:ss"
 
     protected CellStyle dateCellStyle
@@ -27,9 +28,9 @@ class XlsxExporter {
         setUp(workbook)
     }
 
-    XlsxExporter(String fileNameWithPath) {
-        this.fileNameWithPath = fileNameWithPath
-        this.workbook = createOrLoadWorkbook(fileNameWithPath)
+    XlsxExporter(String destinationFileNameWithPath) {
+        this.fileNameWithPath = destinationFileNameWithPath
+        this.workbook = createOrLoadWorkbook(destinationFileNameWithPath)
         setUp(workbook)
     }
 

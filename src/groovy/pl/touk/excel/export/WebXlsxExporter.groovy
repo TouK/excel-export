@@ -8,12 +8,15 @@ class WebXlsxExporter extends XlsxExporter {
         super()
     }
 
-    WebXlsxExporter(String fileNameWithPath) {
-        super(fileNameWithPath)
+    WebXlsxExporter(String templateFileNameWithPath) {
+        File tmpFile = File.createTempFile('tmpWebXlsx', FILENAME_SUFFIX)
+        this.fileNameWithPath = tmpFile.getAbsolutePath()
+        this.workbook = copyAndLoad(templateFileNameWithPath, fileNameWithPath)
+        setUp(workbook)
     }
 
     WebXlsxExporter setResponseHeaders(HttpServletResponse response) {
-        setHeaders(response, new Date().format('yyyy-MM-dd_hh-mm-ss') + ".xlsx")
+        setHeaders(response, new Date().format('yyyy-MM-dd_hh-mm-ss') + FILENAME_SUFFIX)
     }
 
     WebXlsxExporter setResponseHeaders(HttpServletResponse response, Closure filenameClosure) {
