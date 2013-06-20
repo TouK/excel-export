@@ -30,7 +30,7 @@ abstract class PropertyGetter<From, To> implements Getter<To> {
 
     private Object getValueFromChildren(object) {
         def value = propertyName.tokenize('.').inject(object) { Object currentObject, propertyName ->
-            if (currentObject == null || !currentObject.properties.containsKey(propertyName)) {
+            if (!(currentObject instanceof Map) && (currentObject == null || !currentObject.properties.containsKey(propertyName))) {
                 return null
             }
             return currentObject."$propertyName"
