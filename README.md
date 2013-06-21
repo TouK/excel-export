@@ -239,6 +239,9 @@ Hope it helps.
 
 Apache Licence v2.0
 
+#Changes
+
+0.1.6: handling maps in object properties
 
 
 
