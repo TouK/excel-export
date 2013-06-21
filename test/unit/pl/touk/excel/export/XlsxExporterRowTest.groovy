@@ -7,7 +7,8 @@ import static pl.touk.excel.export.Formatters.asDate
 class XlsxExporterRowTest extends XlsxExporterTest {
     List<String> allPropertiesToBeAdded = ["stringValue", "dateValue", "longValue", "booleanValue", asDate("dateAsLong"), "notExistingValue", "child.stringValue",
             "bigDecimalValue", "bigIntegerValue", "byteValue", "doubleValue", "floatValue", "integerValue", "shortValue",
-            "bytePrimitiveValue", "doublePrimitiveValue", "floatPrimitiveValue", "integerPrimitiveValue", "shortPrimitiveValue", "booleanPrimitiveValue"]
+            "bytePrimitiveValue", "doublePrimitiveValue", "floatPrimitiveValue", "integerPrimitiveValue", "shortPrimitiveValue", "booleanPrimitiveValue",
+            "simpleMap.simpleMapKey1", "simpleMap.simpleMapKey2", "nestedMap.nestedMapKey.childMapKey"]
 
     @Test
     void shouldFillRowAtFirstPosition() throws IOException {
@@ -106,5 +107,8 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         assert xlsxReporter.getCellAt(rowNumber, 17)?.getNumericCellValue() == sampleObject.integerPrimitiveValue
         assert xlsxReporter.getCellAt(rowNumber, 18)?.getNumericCellValue() == sampleObject.shortPrimitiveValue
         assert xlsxReporter.getCellAt(rowNumber, 19)?.getBooleanCellValue() == sampleObject.booleanPrimitiveValue
+        assert xlsxReporter.getCellAt(rowNumber, 20)?.getStringCellValue() == sampleObject.simpleMap.simpleMapKey1
+        assert xlsxReporter.getCellAt(rowNumber, 21)?.getStringCellValue() == sampleObject.simpleMap."simpleMapKey2"
+        assert xlsxReporter.getCellAt(rowNumber, 22)?.getStringCellValue() == sampleObject.nestedMap.nestedMapKey.childMapKey
     }
 }

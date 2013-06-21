@@ -22,6 +22,8 @@ class SampleObject {
     int integerPrimitiveValue = 99
     short shortPrimitiveValue = 256
     boolean booleanPrimitiveValue = 256
+    def simpleMap = [simpleMapKey1: 'simpleMapValue1', simpleMapKey2: 'simpleMapValue2']
+    def nestedMap = [nestedMapKey: [childMapKey: 'childMapValue']]
 }
 
 class ChildObject {
