@@ -187,7 +187,7 @@ Here is what you need to add to your BuildConfig.groovy
         }
 
         plugins {
-            runtime (":excel-export:0.1.5")     //#2 important thing
+            runtime (":excel-export:0.1.6")     //#2 important thing
             ...
         }
     ...
