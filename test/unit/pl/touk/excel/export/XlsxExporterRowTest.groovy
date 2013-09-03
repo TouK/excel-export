@@ -1,4 +1,5 @@
 package pl.touk.excel.export
+
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.junit.Test
 
@@ -49,6 +50,22 @@ class XlsxExporterRowTest extends XlsxExporterTest {
 
         //then
         assert getCell(new XSSFWorkbook(getFilePath()), rowNumber, 0).getNumericCellValue() == 0
+    }
+
+    @Test
+    void shouldHandleSubclassesOfValidTypesInProperties() {
+        //given
+        java.util.Date handledType = new java.util.Date(123123)
+        java.sql.Date subclassOfHandledType = new java.sql.Date(321321)
+        List rowValues = [handledType, subclassOfHandledType ]
+
+        //when
+        xlsxReporter.fillRow(rowValues)
+        xlsxReporter.save()
+
+        //then
+        verifyDateAt(handledType, 1, 0)
+        verifyDateAt(subclassOfHandledType, 1, 1)
     }
 
     @Test

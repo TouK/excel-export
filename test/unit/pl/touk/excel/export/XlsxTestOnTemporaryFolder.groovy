@@ -1,4 +1,5 @@
 package pl.touk.excel.export
+
 import org.apache.poi.xssf.usermodel.XSSFCell
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.junit.Before
@@ -17,6 +18,11 @@ abstract class XlsxTestOnTemporaryFolder {
 
     protected String getFilePath() {
         return testFolder.getAbsolutePath() + "/testReport.xlsx"
+    }
+
+    protected void verifyDateAt(Date date, int rowNumber, int columnNumber) {
+        XSSFWorkbook workbook = new XSSFWorkbook(getFilePath())
+        assert getCell(workbook, rowNumber, columnNumber).getDateCellValue().equals(date)
     }
 
     protected void verifyValuesAtRow(List<Object> values, int rowNumber) {

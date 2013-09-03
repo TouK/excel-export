@@ -53,7 +53,7 @@ class RowManipulationAbility {
     }
 
     private static void verifyPropertyTypeCanBeHandled(Object property) {
-        if(!(property.getClass() in handledPropertyTypes)) {
+        if(!(handledPropertyTypes.find {it.isAssignableFrom(property.getClass())} )) {
             throw new IllegalArgumentException("Properties should by of types: " + handledPropertyTypes + ". Found " + property.getClass())
         }
     }

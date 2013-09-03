@@ -3,7 +3,7 @@ import org.junit.Test
 
 import static pl.touk.excel.export.Formatters.asDate
 
-abstract class XlsxExporterHeaderTest extends XlsxExporterTest {
+class XlsxExporterHeaderTest extends XlsxExporterTest {
     @Test
     void shouldCreateHeader() {
         //given
