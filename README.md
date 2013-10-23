@@ -242,7 +242,9 @@ Apache Licence v2.0
 #Changes
 
 0.1.8: fix for grails 2.3.1 (groovy changing how Mixins see private methods)
+
 0.1.7: fixed Property Type Validation not accepting subclasses
+
 0.1.6: handling maps in object properties
 
 
