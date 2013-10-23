@@ -9,12 +9,12 @@ import pl.touk.excel.export.getters.Getter
 @Category(XlsxExporter)
 class CellManipulationAbility {
     XSSFCell getCellAt(int rowNumber, int columnNumber) {
-        XSSFRow row = getOrCreateRow(rowNumber, sheet)
+        XSSFRow row = CellManipulationAbility.getOrCreateRow(rowNumber, sheet)
         row.getCell((Short) columnNumber)
     }
 
     XlsxExporter putCellValue(int rowNumber, int columnNumber, String value) {
-        getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(creationHelper.createRichTextString(value))
+        CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(creationHelper.createRichTextString(value))
         this
     }
 
@@ -24,19 +24,19 @@ class CellManipulationAbility {
     }
 
     XlsxExporter putCellValue(int rowNumber, int columnNumber, Number value) {
-        getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value.toDouble())
+        CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value.toDouble())
         this
     }
 
     XlsxExporter putCellValue(int rowNumber, int columnNumber, Date value) {
-        XSSFCell cell = getOrCreateCellAt(rowNumber, columnNumber, sheet)
+        XSSFCell cell = CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet)
         cell.setCellValue(value)
         cell.setCellStyle(dateCellStyle)
         this
     }
 
     XlsxExporter putCellValue(int rowNumber, int columnNumber, Boolean value) {
-        getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value)
+        CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value)
         this
     }
 

@@ -26,7 +26,7 @@ class RowManipulationAbility {
     XlsxExporter fillRowWithValues(List<Object> properties, int rowNumber) {
         properties.eachWithIndex { Object property, int index ->
             def propertyToBeInserted = property == null ? "" : property
-            verifyPropertyTypeCanBeHandled(property)
+            RowManipulationAbility.verifyPropertyTypeCanBeHandled(property)
             putCellValue(rowNumber, index, propertyToBeInserted)
         }
         this
@@ -44,7 +44,7 @@ class RowManipulationAbility {
     }
 
     XlsxExporter add(Object object, List<Object> selectedProperties, int rowNumber) {
-        List<Object> properties = getPropertiesFromObject(object, Formatters.convertSafelyToGetters(selectedProperties))
+        List<Object> properties = RowManipulationAbility.getPropertiesFromObject(object, Formatters.convertSafelyToGetters(selectedProperties))
         fillRow(properties, rowNumber)
     }
 
