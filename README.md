@@ -235,9 +235,9 @@ All the methods in 'withProperties' are static imports generating a new instance
 
 Hope it helps.
 
-#Licence
+#License
 
-Apache Licence v2.0
+Apache License v2.0
 
 #Changes
 
