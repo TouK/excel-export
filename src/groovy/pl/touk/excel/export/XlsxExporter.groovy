@@ -12,17 +12,31 @@ import pl.touk.excel.export.abilities.RowManipulationAbility
 
 @Mixin([RowManipulationAbility, CellManipulationAbility, FileManipulationAbility])
 class XlsxExporter implements IPoiSheetManipulator {
-    public static final String sheetName = "Report"
+    protected static final sheetName = "Report"
     @PackageScope static final String defaultDateFormat = "yyyy/mm/dd h:mm:ss"
 
+    String worksheetName
     CellStyle dateCellStyle
     CreationHelper creationHelper
-    Sheet sheet
+
+    // For the sake of people getting to the underlying POI, workbook itself
+    // is made public
+    XSSFWorkbook workbook
 
     protected Map sheets = [:]
     protected String fileNameWithPath
-    protected XSSFWorkbook workbook
     protected OPCPackage zipPackage
+
+    private Sheet sheet
+
+    // Moves creation of initial sheet away from constructor, allowing its name to change
+    public Sheet getSheet() {
+        if ( !sheet ) {
+            sheet = withSheet(worksheetName ?: sheetName).sheet
+        }
+
+        return sheet
+    }
 
     XlsxExporter() {
         this.workbook = new XSSFWorkbook()
@@ -52,7 +66,6 @@ class XlsxExporter implements IPoiSheetManipulator {
 
     private setUp() {
         this.creationHelper = workbook.getCreationHelper()
-        this.sheet = withSheet(sheetName).sheet
         this.dateCellStyle = createDateCellStyle(XlsxExporter.defaultDateFormat)
     }
 
