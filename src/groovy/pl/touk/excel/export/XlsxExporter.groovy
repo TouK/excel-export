@@ -11,26 +11,28 @@ import pl.touk.excel.export.abilities.FileManipulationAbility
 import pl.touk.excel.export.abilities.RowManipulationAbility
 
 @Mixin([RowManipulationAbility, CellManipulationAbility, FileManipulationAbility])
-class XlsxExporter {
+class XlsxExporter implements IPoiSheetManipulator {
     public static final String sheetName = "Report"
     @PackageScope static final String defaultDateFormat = "yyyy/mm/dd h:mm:ss"
 
-    protected CellStyle dateCellStyle
+    CellStyle dateCellStyle
+    CreationHelper creationHelper
+    Sheet sheet
+
+    protected Map sheets = [:]
     protected String fileNameWithPath
-    protected CreationHelper creationHelper
     protected XSSFWorkbook workbook
-    protected Sheet sheet
     protected OPCPackage zipPackage
 
     XlsxExporter() {
         this.workbook = new XSSFWorkbook()
-        setUp(workbook)
+        setUp()
     }
 
     XlsxExporter(String fileNameWithPath) {
         this.fileNameWithPath = fileNameWithPath
         this.workbook = createOrLoadWorkbook(fileNameWithPath)
-        setUp(workbook)
+        setUp()
     }
 
     private XSSFWorkbook createOrLoadWorkbook(String fileNameWithPath) {
@@ -45,24 +47,34 @@ class XlsxExporter {
     XlsxExporter(String templateFileNameWithPath, String destinationFileNameWithPath) {
         this.fileNameWithPath = destinationFileNameWithPath
         this.workbook = copyAndLoad(templateFileNameWithPath, destinationFileNameWithPath)
-        setUp(workbook)
+        setUp()
     }
 
-    private setUp(XSSFWorkbook workbook) {
+    private setUp() {
         this.creationHelper = workbook.getCreationHelper()
-        this.sheet = createOrLoadSheet(workbook, sheetName)
-        this.dateCellStyle = createDateCellStyle(workbook, XlsxExporter.defaultDateFormat)
+        this.sheet = withSheet(sheetName).sheet
+        this.dateCellStyle = createDateCellStyle(XlsxExporter.defaultDateFormat)
     }
 
-    private CellStyle createDateCellStyle(XSSFWorkbook workbook, String expectedDateFormat) {
+    private CellStyle createDateCellStyle(String expectedDateFormat) {
         CellStyle dateCellStyle = workbook.createCellStyle()
         XSSFDataFormat dateFormat = workbook.createDataFormat()
         dateCellStyle.dataFormat = dateFormat.getFormat(expectedDateFormat)
         dateCellStyle
     }
 
-    private Sheet createOrLoadSheet(XSSFWorkbook workbook, String sheetName) {
-        workbook.getSheet(sheetName) ?: workbook.createSheet(sheetName)
+    public ExcelExportSheet withSheet(String sheetName) {
+        Sheet workbookSheet = workbook.getSheet( sheetName ) ?: workbook.createSheet( sheetName )
+
+        // No local sheet representation for it?  Create it.
+        if ( !sheets[ workbookSheet ] ) {
+            sheets[ workbookSheet ] = new ExcelExportSheet(
+                exporter: this,
+                sheet: workbookSheet
+            )
+        }
+
+        return sheets[ workbookSheet ]
     }
 
     private XSSFWorkbook copyAndLoad(String templateNameWithPath, String destinationNameWithPath) {
@@ -83,7 +95,7 @@ class XlsxExporter {
     }
 
     XlsxExporter setDateCellFormat(String format) {
-        this.dateCellStyle = createDateCellStyle(workbook, format)
+        this.dateCellStyle = createDateCellStyle(format)
         this
     }
 
