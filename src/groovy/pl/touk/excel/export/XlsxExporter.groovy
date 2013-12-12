@@ -12,7 +12,7 @@ import pl.touk.excel.export.abilities.RowManipulationAbility
 
 @Mixin([RowManipulationAbility, CellManipulationAbility, FileManipulationAbility])
 class XlsxExporter implements IPoiSheetManipulator {
-    protected static final sheetName = "Report"
+    protected static final String sheetName = "Report"
     @PackageScope static final String defaultDateFormat = "yyyy/mm/dd h:mm:ss"
 
     String worksheetName
