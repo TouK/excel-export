@@ -187,7 +187,7 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime (":excel-export:0.1.9")     //#2 important thing
+        runtime (":excel-export:0.1.10")     //#2 important thing
         ...
     }
     ...
@@ -254,6 +254,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 #Changes
+
+0.1.10 not exporting release plugin dependency anymore (Issue #14)
 
 0.1.9 upgrade to release plugin 3.0.1 (run 'grails refresh-dependencies' if you have problems in grails 2.3.2)
 
