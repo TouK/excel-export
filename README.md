@@ -83,7 +83,7 @@ XlsxExporter exporter = new XlsxExporter('/tmp/myReportFile.xlsx')
 
 exporter.withSheet('products').
     add( products, ['name', 'description', 'validTill', 'productNumber', 'price.value'] )
-exporter.withSheet('categories').
+exporter.withSheet('productCategories').
     add( productCategories, ['name', 'description' ] )
 
 exporter.save()
