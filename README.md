@@ -70,6 +70,25 @@ You can mix playing on cell-by-cell approach with add method
         save(response.outputStream)
     }
 
+#What about multiple sheets?
+
+If you'd like to work with multiple sheets, just call withSheet(sheetName) on your exporter. It returns an instance
+of ExcelExportSheet that shares the same row/cell manipulation API as the exporter itself:
+
+```
+List<Product> products = productFactory.createProducts()
+List<ProductCategory> productCategories = productFactory.createProductCategories()
+
+XlsxExporter exporter = new XlsxExporter('/tmp/myReportFile.xlsx')
+
+exporter.withSheet('products').
+    add( products, ['name', 'description', 'validTill', 'productNumber', 'price.value'] )
+exporter.withSheet('categories').
+    add( productCategories, ['name', 'description' ] )
+
+exporter.save()
+```
+
 #How to export my own types?
 
 This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short), it also handles nested properties, but sooner or later, you'll want to export a property of a different type.
