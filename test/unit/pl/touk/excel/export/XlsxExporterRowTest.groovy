@@ -76,6 +76,47 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         verifyRowHasSelectedProperties(2, objects.get(2))
     }
 
+    @Test
+    void shouldFillRowsFromListsOfMaps() {
+        //given
+
+        // Make sure we can handle nulls
+        List stones = [
+            [
+                first: 'Keith',
+                middle: null,
+                last: 'Richards'
+            ],
+            [
+                first: 'Mick',
+                middle: null,
+                last: 'Jaggar'
+            ],
+            [
+                first: 'Ronnie',
+                middle: null,
+                last: 'Wood'
+            ],
+            [
+                first: 'Charlie',
+                middle: null,
+                last: 'Watts'
+            ],
+        ]
+
+        //when
+        xlsxReporter.add(stones, ['first','middle'], 0)
+
+        //then
+        assert xlsxReporter.getCellAt(0, 0).getStringCellValue() == 'Keith'
+        assert xlsxReporter.getCellAt(0, 1).getStringCellValue() == ''
+        assert xlsxReporter.getCellAt(0, 2) == null
+        assert xlsxReporter.getCellAt(3, 0).getStringCellValue() == 'Charlie'
+        assert xlsxReporter.getCellAt(3, 1).getStringCellValue() == ''
+        assert xlsxReporter.getCellAt(3, 2) == null
+    }
+
+
     @Test(expected=IllegalArgumentException.class)
     void shouldThrowExceptionWhenListIsPassedAsArgument() {
         //given

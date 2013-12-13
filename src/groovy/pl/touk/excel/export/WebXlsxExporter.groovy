@@ -4,6 +4,7 @@ package pl.touk.excel.export
 import javax.servlet.http.HttpServletResponse
 
 class WebXlsxExporter extends XlsxExporter {
+
     WebXlsxExporter() {
         super()
     }
