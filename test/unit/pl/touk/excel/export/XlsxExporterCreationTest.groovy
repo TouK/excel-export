@@ -73,4 +73,23 @@ class XlsxExporterCreationTest extends XlsxExporterTest {
         assert getCellValue(new XlsxExporter(getFilePath()), 1, 1) == "old" //otherwise this sucker keeps the value in cache
         assert getCellValue(newXlsxReporter, 1, 1) == "new"
     }
+
+    @Test
+    void shouldBeAbleToRenameInitialSheet() {
+        //given
+        XlsxExporter namedSheetExporter
+        XlsxExporter controlExporter
+
+        String otherSheetName = 'something else'
+
+        //when
+        namedSheetExporter = new XlsxExporter(worksheetName: otherSheetName)
+        controlExporter = new XlsxExporter()
+
+        //then
+        assert namedSheetExporter.sheet
+        assert namedSheetExporter.workbook.getSheet(otherSheetName)
+        assert !controlExporter.workbook.getSheet(otherSheetName)
+    }
+
 }

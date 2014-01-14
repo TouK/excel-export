@@ -42,6 +42,6 @@ abstract class XlsxTestOnTemporaryFolder {
     }
 
     protected XSSFCell getCell(XSSFWorkbook workbook, int rowNumber, int columnNumber) {
-        return workbook.getSheet(XlsxExporter.sheetName).getRow((Short)rowNumber).getCell((Short)columnNumber)
+        return workbook.getSheet(XlsxExporter.defaultSheetName).getRow((Short)rowNumber).getCell((Short)columnNumber)
     }
 }

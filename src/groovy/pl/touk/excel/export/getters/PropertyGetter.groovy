@@ -22,10 +22,15 @@ abstract class PropertyGetter<From, To> implements Getter<To> {
     }
 
     private Object getFormattedPropertyValue(object) {
-        if (!object.properties.containsKey(propertyName)) {
-            return null
+        // Support for Maps as well as typed objects
+        if ( object instanceof Map ) {
+            return format( object[ propertyName ] )
+        } else {
+            if (!object.properties.containsKey(propertyName)) {
+                return null
+            }
+            return format(object."$propertyName")
         }
-        return format(object."$propertyName")
     }
 
     private Object getValueFromChildren(object) {

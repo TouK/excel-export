@@ -3,39 +3,39 @@ import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.util.CellUtil
 import org.apache.poi.xssf.usermodel.XSSFCell
 import org.apache.poi.xssf.usermodel.XSSFRow
-import pl.touk.excel.export.XlsxExporter
 import pl.touk.excel.export.getters.Getter
+import pl.touk.excel.export.multisheet.SheetManipulator
 
-@Category(XlsxExporter)
+@Category(SheetManipulator)
 class CellManipulationAbility {
     XSSFCell getCellAt(int rowNumber, int columnNumber) {
         XSSFRow row = CellManipulationAbility.getOrCreateRow(rowNumber, sheet)
         row.getCell((Short) columnNumber)
     }
 
-    XlsxExporter putCellValue(int rowNumber, int columnNumber, String value) {
+    SheetManipulator putCellValue(int rowNumber, int columnNumber, String value) {
         CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(creationHelper.createRichTextString(value))
         this
     }
 
-    XlsxExporter putCellValue(int rowNumber, int columnNumber, Getter formatter) {
-        putCellValue(rowNumber, columnNumber, formatter.propertyName)
+    SheetManipulator putCellValue(int rowNumber, int columnNumber, Getter formatter) {
+        CellManipulationAbility.putCellValue(rowNumber, columnNumber, formatter.propertyName)
         this
     }
 
-    XlsxExporter putCellValue(int rowNumber, int columnNumber, Number value) {
+    SheetManipulator putCellValue(int rowNumber, int columnNumber, Number value) {
         CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value.toDouble())
         this
     }
 
-    XlsxExporter putCellValue(int rowNumber, int columnNumber, Date value) {
+    SheetManipulator putCellValue(int rowNumber, int columnNumber, Date value) {
         XSSFCell cell = CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet)
         cell.setCellValue(value)
         cell.setCellStyle(dateCellStyle)
         this
     }
 
-    XlsxExporter putCellValue(int rowNumber, int columnNumber, Boolean value) {
+    SheetManipulator putCellValue(int rowNumber, int columnNumber, Boolean value) {
         CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value)
         this
     }

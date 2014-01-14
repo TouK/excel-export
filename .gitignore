@@ -44,3 +44,7 @@
 # other
 *.iws
 
+grails-app/i18n/
+howtomerge.txt
+out/
+web-app/

@@ -4,19 +4,20 @@ package pl.touk.excel.export
 import javax.servlet.http.HttpServletResponse
 
 class WebXlsxExporter extends XlsxExporter {
+
     WebXlsxExporter() {
         super()
     }
 
     WebXlsxExporter(String templateFileNameWithPath) {
-        File tmpFile = File.createTempFile('tmpWebXlsx', FILENAME_SUFFIX)
+        File tmpFile = File.createTempFile('tmpWebXlsx', filenameSuffix)
         this.fileNameWithPath = tmpFile.getAbsolutePath()
         this.workbook = copyAndLoad(templateFileNameWithPath, fileNameWithPath)
         setUp(workbook)
     }
 
     WebXlsxExporter setResponseHeaders(HttpServletResponse response) {
-        setHeaders(response, new Date().format('yyyy-MM-dd_hh-mm-ss') + FILENAME_SUFFIX)
+        setHeaders(response, new Date().format('yyyy-MM-dd_hh-mm-ss') + filenameSuffix)
     }
 
     WebXlsxExporter setResponseHeaders(HttpServletResponse response, Closure filenameClosure) {

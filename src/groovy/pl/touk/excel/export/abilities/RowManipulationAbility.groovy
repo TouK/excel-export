@@ -2,48 +2,48 @@ package pl.touk.excel.export.abilities
 
 import org.codehaus.groovy.runtime.NullObject
 import pl.touk.excel.export.Formatters
-import pl.touk.excel.export.XlsxExporter
 import pl.touk.excel.export.getters.Getter
 
 import java.sql.Timestamp
+import pl.touk.excel.export.multisheet.SheetManipulator
 
-@Category(XlsxExporter)
+@Category(SheetManipulator)
 class RowManipulationAbility {
     private static final handledPropertyTypes = [String, Getter, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short]
 
-    XlsxExporter fillHeader(List properties) {
+    SheetManipulator fillHeader(List properties) {
         fillRow(Formatters.convertSafelyFromGetters(properties), 0)
     }
 
-    XlsxExporter fillRow(List<Object> properties) {
+    SheetManipulator fillRow(List<Object> properties) {
         fillRow(properties, 1)
     }
 
-    XlsxExporter fillRow(List<Object> properties, int rowNumber) {
+    SheetManipulator fillRow(List<Object> properties, int rowNumber) {
         fillRowWithValues(properties, rowNumber)
     }
 
-    XlsxExporter fillRowWithValues(List<Object> properties, int rowNumber) {
+    SheetManipulator fillRowWithValues(List<Object> properties, int rowNumber) {
         properties.eachWithIndex { Object property, int index ->
             def propertyToBeInserted = property == null ? "" : property
             RowManipulationAbility.verifyPropertyTypeCanBeHandled(property)
-            putCellValue(rowNumber, index, propertyToBeInserted)
+            CellManipulationAbility.putCellValue(rowNumber, index, propertyToBeInserted)
         }
         this
     }
 
-    XlsxExporter add(List<Object> objects, List<Object> selectedProperties) {
+    SheetManipulator add(List<Object> objects, List<Object> selectedProperties) {
         add(objects, selectedProperties, 1)
     }
 
-    XlsxExporter add(List<Object> objects, List<Object> selectedProperties, int rowNumber) {
+    SheetManipulator add(List<Object> objects, List<Object> selectedProperties, int rowNumber) {
         objects.eachWithIndex() { Object object, int index ->
-            this.add(object, selectedProperties, rowNumber + index)
+            RowManipulationAbility.add(object, selectedProperties, rowNumber + index)
         }
         this
     }
 
-    XlsxExporter add(Object object, List<Object> selectedProperties, int rowNumber) {
+    SheetManipulator add(Object object, List<Object> selectedProperties, int rowNumber) {
         List<Object> properties = RowManipulationAbility.getPropertiesFromObject(object, Formatters.convertSafelyToGetters(selectedProperties))
         fillRow(properties, rowNumber)
     }
