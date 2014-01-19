@@ -11,8 +11,9 @@ class XlsxExporterDateStyleTest extends XlsxExporterTest {
         Date dateValue = new Date()
 
         //when
-        xlsxReporter.putCellValue(0, 0, stringValue).
-                     putCellValue(0, 1, dateValue)
+        xlsxReporter.
+                putCellValue(0, 0, stringValue).
+                putCellValue(0, 1, dateValue)
 
         //then
         assert xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == "General"

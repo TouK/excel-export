@@ -14,7 +14,7 @@ class CellManipulationAbility {
     }
 
     SheetManipulator putCellValue(int rowNumber, int columnNumber, String value) {
-        CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(creationHelper.createRichTextString(value))
+        CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(getCreationHelper().createRichTextString(value))
         return this
     }
 

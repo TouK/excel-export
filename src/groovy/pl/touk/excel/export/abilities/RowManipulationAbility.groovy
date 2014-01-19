@@ -27,7 +27,7 @@ class RowManipulationAbility {
         properties.eachWithIndex { Object property, int index ->
             def propertyToBeInserted = property == null ? "" : property
             RowManipulationAbility.verifyPropertyTypeCanBeHandled(property)
-            CellManipulationAbility.putCellValue(rowNumber, index, propertyToBeInserted)
+            CellManipulationAbility.putCellValue(this, rowNumber, index, propertyToBeInserted)
         }
         return this
     }
@@ -38,7 +38,7 @@ class RowManipulationAbility {
 
     SheetManipulator add(List<Object> objects, List<Object> selectedProperties, int rowNumber) {
         objects.eachWithIndex() { Object object, int index ->
-            RowManipulationAbility.add(object, selectedProperties, rowNumber + index)
+            RowManipulationAbility.add(this, object, selectedProperties, rowNumber + index)
         }
         return this
     }

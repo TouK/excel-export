@@ -77,20 +77,18 @@ class XlsxExporterCreationTest extends XlsxExporterTest {
     @Test
     void shouldBeAbleToRenameInitialSheet() {
         //given
-        XlsxExporter namedSheetExporter
-        XlsxExporter controlExporter
-
         String otherSheetName = 'something else'
 
         //when
-        //TODO: we should not mix explicit constructors with named parameters constructor. The interface is not clear to the reader in such a scenerio
-        namedSheetExporter = new XlsxExporter(worksheetName: otherSheetName)
-        controlExporter = new XlsxExporter()
+        XlsxExporter namedSheetExporter = new XlsxExporter()
+        namedSheetExporter.setWorksheetName(otherSheetName)
 
         //then
-        assert namedSheetExporter.sheet
-        assert namedSheetExporter.workbook.getSheet(otherSheetName)
-        assert !controlExporter.workbook.getSheet(otherSheetName)
+        assert namedSheetExporter.sheet.sheetName == otherSheetName
     }
 
+    @Test
+    void shouldHaveDefaultNameForInitialSheet() {
+        assert new XlsxExporter().sheet.sheetName == XlsxExporter.defaultSheetName
+    }
 }
