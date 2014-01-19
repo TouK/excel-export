@@ -73,21 +73,49 @@ new WebXlsxExporter().with {
 
 #What about multiple sheets?
 
-If you'd like to work with multiple sheets, just call withSheet(sheetName) on your exporter. It returns an instance
-of ExcelExportSheet that shares the same row/cell manipulation API as the exporter itself:
+If you'd like to work with multiple sheets, just call sheet(sheetName) on your exporter. It returns an instance
+of AdditionalSheet that shares the same row/cell manipulation API as the exporter itself:
 
 ```groovy
-List<Product> products = productFactory.createProducts()
-List<ProductCategory> productCategories = productFactory.createProductCategories()
+    List<Product> products = productFactory.createProducts()
+    def withProperties = ['name', 'description', 'validTill', 'productNumber', 'price.value']
 
-XlsxExporter exporter = new XlsxExporter('/tmp/myReportFile.xlsx')
+    new WebXlsxExporter().with {
+        setResponseHeaders(response)
+        sheet('second sheet').with {
+            fillHeader(withProperties)
+            add( products, withProperties )
+        }
+        save(response.outputStream)
+    }
+```
 
-exporter.withSheet('products').
-    add( products, ['name', 'description', 'validTill', 'productNumber', 'price.value'] )
-exporter.withSheet('productCategories').
-    add( productCategories, ['name', 'description' ] )
+You can also mix using additional sheets with a default sheet:
 
-exporter.save()
+```groovy
+    List<Product> products = productFactory.createProducts()
+    def withProperties = ['name', 'description', 'validTill', 'productNumber', 'price.value']
+
+    new WebXlsxExporter().with {
+        setResponseHeaders(response)
+        fillHeader(withProperties)
+        add( products, withProperties )
+        sheet('second sheet').with {
+            fillHeader(withProperties)
+            add( products, withProperties )
+        }
+        save(response.outputStream)
+    }
+```
+
+And if you'd like to change the name of default sheet, just set it before first call:
+
+```groovy
+    WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
+    webXlsxExporter.setWorksheetName("products")
+    webXlsxExporter.with {
+        ...
+    }
 ```
 
 #How to export my own types?
