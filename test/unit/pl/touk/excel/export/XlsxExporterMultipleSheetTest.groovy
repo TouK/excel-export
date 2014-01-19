@@ -11,7 +11,7 @@ class XlsxExporterMultipleSheetTest extends XlsxExporterTest {
 
         //when
         xlsxReporter.add(objectsForDefaultSheet, SampleObject.propertyNames, 0)
-        xlsxReporter.withSheet(sheetName).add( objectsForNamedSheet, SampleObject.propertyNames, 0)
+        xlsxReporter.sheet(sheetName).add( objectsForNamedSheet, SampleObject.propertyNames, 0)
 
         //then
         verifySaved(objectsForDefaultSheet, XlsxExporter.defaultSheetName)
@@ -20,7 +20,7 @@ class XlsxExporterMultipleSheetTest extends XlsxExporterTest {
 
     private void verifySaved(ArrayList<SampleObject> objects, String sheetName) {
         objects.eachWithIndex { SampleObject sampleObject, int i ->
-            sampleObject.verifyRowHasSelectedProperties(xlsxReporter.withSheet(sheetName), i)
+            sampleObject.verifyRowHasSelectedProperties(xlsxReporter.sheet(sheetName), i)
         }
     }
 }

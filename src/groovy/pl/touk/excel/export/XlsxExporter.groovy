@@ -78,10 +78,10 @@ class XlsxExporter implements SheetManipulator {
 
     AdditionalSheet withDefaultSheet() {
         worksheetName = worksheetName ?: defaultSheetName
-        return withSheet(worksheetName)
+        return sheet(worksheetName)
     }
 
-    AdditionalSheet withSheet(String sheetName) {
+    AdditionalSheet sheet(String sheetName) {
         if ( !sheets[sheetName] ) {
             Sheet workbookSheet = workbook.getSheet( sheetName ) ?: workbook.createSheet( sheetName )
             sheets[sheetName] = new AdditionalSheet(workbookSheet, workbook.creationHelper, dateCellStyle)
@@ -125,7 +125,7 @@ class XlsxExporter implements SheetManipulator {
         return creationHelper
     }
 
-//TODO doesn't work
+    //FIXME: nope, that doesn't work
     void finalize() {
         closeZipPackageIfPossible()
     }
