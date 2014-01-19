@@ -303,6 +303,8 @@ limitations under the License.
 
 #Changes
 
+0.2.0 working with multiple sheets and renaming default sheet
+
 0.1.10 not exporting release plugin dependency anymore (Issue #14)
 
 0.1.9 upgrade to release plugin 3.0.1 (run 'grails refresh-dependencies' if you have problems in grails 2.3.2)
