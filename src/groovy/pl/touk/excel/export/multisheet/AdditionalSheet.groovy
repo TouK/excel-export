@@ -20,7 +20,7 @@ class AdditionalSheet implements SheetManipulator {
         this.creationHelper = creationHelper
         this.dateCellStyle = dateCellStyle
     }
-/* Support the getters in CellManipulationAbility */
+
     Sheet getSheet() {
         return sheet
     }

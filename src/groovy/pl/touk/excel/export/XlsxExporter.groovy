@@ -62,7 +62,6 @@ class XlsxExporter implements SheetManipulator {
         this.dateCellStyle = createDateCellStyle(XlsxExporter.defaultDateFormat)
     }
 
-    // Moves creation of initial sheet away from constructor, allowing its name to change
     Sheet getSheet() {
         defaultSheet = (defaultSheet) ?: withSheet(worksheetName ?: defaultSheetName).sheet
         return defaultSheet

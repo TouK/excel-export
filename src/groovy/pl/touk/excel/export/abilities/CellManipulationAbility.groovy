@@ -15,29 +15,29 @@ class CellManipulationAbility {
 
     SheetManipulator putCellValue(int rowNumber, int columnNumber, String value) {
         CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(creationHelper.createRichTextString(value))
-        this
+        return this
     }
 
     SheetManipulator putCellValue(int rowNumber, int columnNumber, Getter formatter) {
         CellManipulationAbility.putCellValue(rowNumber, columnNumber, formatter.propertyName)
-        this
+        return this
     }
 
     SheetManipulator putCellValue(int rowNumber, int columnNumber, Number value) {
         CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value.toDouble())
-        this
+        return this
     }
 
     SheetManipulator putCellValue(int rowNumber, int columnNumber, Date value) {
         XSSFCell cell = CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet)
         cell.setCellValue(value)
         cell.setCellStyle(dateCellStyle)
-        this
+        return this
     }
 
     SheetManipulator putCellValue(int rowNumber, int columnNumber, Boolean value) {
         CellManipulationAbility.getOrCreateCellAt(rowNumber, columnNumber, sheet).setCellValue(value)
-        this
+        return this
     }
 
     private static XSSFCell getOrCreateCellAt(int rowNumber, int columnNumber, Sheet sheet) {

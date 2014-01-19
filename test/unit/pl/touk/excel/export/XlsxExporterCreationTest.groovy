@@ -83,6 +83,7 @@ class XlsxExporterCreationTest extends XlsxExporterTest {
         String otherSheetName = 'something else'
 
         //when
+        //TODO: we should not mix explicit constructors with named parameters constructor. The interface is not clear to the reader in such a scenerio
         namedSheetExporter = new XlsxExporter(worksheetName: otherSheetName)
         controlExporter = new XlsxExporter()
 

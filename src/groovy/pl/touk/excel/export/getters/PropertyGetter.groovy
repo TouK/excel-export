@@ -22,7 +22,6 @@ abstract class PropertyGetter<From, To> implements Getter<To> {
     }
 
     private Object getFormattedPropertyValue(object) {
-        // Support for Maps as well as typed objects
         if ( object instanceof Map ) {
             return format( object[ propertyName ] )
         } else {

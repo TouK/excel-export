@@ -29,7 +29,7 @@ class RowManipulationAbility {
             RowManipulationAbility.verifyPropertyTypeCanBeHandled(property)
             CellManipulationAbility.putCellValue(rowNumber, index, propertyToBeInserted)
         }
-        this
+        return this
     }
 
     SheetManipulator add(List<Object> objects, List<Object> selectedProperties) {
@@ -40,7 +40,7 @@ class RowManipulationAbility {
         objects.eachWithIndex() { Object object, int index ->
             RowManipulationAbility.add(object, selectedProperties, rowNumber + index)
         }
-        this
+        return this
     }
 
     SheetManipulator add(Object object, List<Object> selectedProperties, int rowNumber) {
