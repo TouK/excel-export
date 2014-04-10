@@ -10,6 +10,8 @@ import pl.touk.excel.export.multisheet.SheetManipulator
 @Category(SheetManipulator)
 class RowManipulationAbility {
     private static final handledPropertyTypes = [String, Getter, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short]
+    //ToStringIfPropertyTypeIsNothandled
+    private static toString = true
 
     SheetManipulator fillHeader(List properties) {
         fillRow(Formatters.convertSafelyFromGetters(properties), 0)
@@ -25,8 +27,7 @@ class RowManipulationAbility {
 
     SheetManipulator fillRowWithValues(List<Object> properties, int rowNumber) {
         properties.eachWithIndex { Object property, int index ->
-            def propertyToBeInserted = property == null ? "" : property
-            RowManipulationAbility.verifyPropertyTypeCanBeHandled(property)
+            def propertyToBeInserted = RowManipulationAbility.getPropertyToBeInserted(property)
             CellManipulationAbility.putCellValue(this, rowNumber, index, propertyToBeInserted)
         }
         return this
@@ -48,13 +49,28 @@ class RowManipulationAbility {
         fillRow(properties, rowNumber)
     }
 
+    private static Object getPropertyToBeInserted(Object property){
+        property = property == null ? "" : property
+
+        if(!RowManipulationAbility.verifyPropertyTypeCanBeHandled(property)){
+            if(!toString) {
+                throw new IllegalArgumentException("Properties should by of types: " + handledPropertyTypes + ". Found " + property.getClass())
+            } else {
+                property = property.toString()
+            }
+        }
+        return property
+    }
+
     private static List<Object> getPropertiesFromObject(Object object, List<Getter> selectedProperties) {
         selectedProperties.collect { it.getFormattedValue(object) }
     }
 
-    private static void verifyPropertyTypeCanBeHandled(Object property) {
+    private static boolean verifyPropertyTypeCanBeHandled(Object property) {
         if(!(handledPropertyTypes.find {it.isAssignableFrom(property.getClass())} )) {
-            throw new IllegalArgumentException("Properties should by of types: " + handledPropertyTypes + ". Found " + property.getClass())
+            return false
+        } else {
+            return true
         }
     }
 }
