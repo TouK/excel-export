@@ -9,7 +9,7 @@ class SampleObject {
     static final List<String> propertyNames = ["stringValue", "dateValue", "longValue", "booleanValue", asDate("dateAsLong"), "notExistingValue", "child.stringValue",
             "bigDecimalValue", "bigIntegerValue", "byteValue", "doubleValue", "floatValue", "integerValue", "shortValue",
             "bytePrimitiveValue", "doublePrimitiveValue", "floatPrimitiveValue", "integerPrimitiveValue", "shortPrimitiveValue", "booleanPrimitiveValue",
-            "simpleMap.simpleMapKey1", "simpleMap.simpleMapKey2", "nestedMap.nestedMapKey.childMapKey", "child"]
+            "simpleMap.simpleMapKey1", "simpleMap.simpleMapKey2", "nestedMap.nestedMapKey.childMapKey", "child", "enumValue"]
 
     String stringValue = UUID.randomUUID().toString()
     Date dateValue = new Date()
@@ -33,6 +33,7 @@ class SampleObject {
     boolean booleanPrimitiveValue = 256
     def simpleMap = [simpleMapKey1: 'simpleMapValue1', simpleMapKey2: 'simpleMapValue2']
     def nestedMap = [nestedMapKey: [childMapKey: 'childMapValue']]
+    EnumObject enumValue = EnumObject.SECOND_VALUE
 
     private void verifyRowHasSelectedProperties(AdditionalSheet additionalSheet, int rowNumber) {
         assert additionalSheet.getCellAt(rowNumber, 0)?.getStringCellValue() == stringValue
@@ -59,6 +60,7 @@ class SampleObject {
         assert additionalSheet.getCellAt(rowNumber, 21)?.getStringCellValue() == simpleMap."simpleMapKey2"
         assert additionalSheet.getCellAt(rowNumber, 22)?.getStringCellValue() == nestedMap.nestedMapKey.childMapKey
         assert additionalSheet.getCellAt(rowNumber, 23)?.getStringCellValue() == child.toString()
+        assert additionalSheet.getCellAt(rowNumber, 24)?.getStringCellValue() == EnumObject.SECOND_VALUE.toString()
     }
 }
 
@@ -68,4 +70,8 @@ class ChildObject {
     String toString(){
         'String representation of this object'
     }
+}
+
+enum EnumObject {
+    FIRST_VALUE, SECOND_VALUE
 }
