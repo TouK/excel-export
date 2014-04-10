@@ -112,13 +112,16 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         assert xlsxReporter.getCellAt(0, 0).getStringCellValue() == ''
     }
 
-
-    @Test(expected=IllegalArgumentException.class)
-    void shouldThrowExceptionWhenListIsPassedAsArgument() {
+    @Test
+    void shouldHanldeListAsToString() {
         //given
         List<ArrayList> objects = [new SampleObjectWithList(), new SampleObjectWithList()]
 
         //when
-        xlsxReporter.add(objects, ['list'])
+        xlsxReporter.add(objects, ['list'], 0)
+
+        //then
+        assert xlsxReporter.getCellAt(0, 0).getStringCellValue() == objects[0].list.toString()
+        assert xlsxReporter.getCellAt(1, 0).getStringCellValue() == objects[1].list.toString()
     }
 }

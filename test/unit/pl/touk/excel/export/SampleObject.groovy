@@ -9,7 +9,7 @@ class SampleObject {
     static final List<String> propertyNames = ["stringValue", "dateValue", "longValue", "booleanValue", asDate("dateAsLong"), "notExistingValue", "child.stringValue",
             "bigDecimalValue", "bigIntegerValue", "byteValue", "doubleValue", "floatValue", "integerValue", "shortValue",
             "bytePrimitiveValue", "doublePrimitiveValue", "floatPrimitiveValue", "integerPrimitiveValue", "shortPrimitiveValue", "booleanPrimitiveValue",
-            "simpleMap.simpleMapKey1", "simpleMap.simpleMapKey2", "nestedMap.nestedMapKey.childMapKey"]
+            "simpleMap.simpleMapKey1", "simpleMap.simpleMapKey2", "nestedMap.nestedMapKey.childMapKey", "child"]
 
     String stringValue = UUID.randomUUID().toString()
     Date dateValue = new Date()
@@ -58,9 +58,14 @@ class SampleObject {
         assert additionalSheet.getCellAt(rowNumber, 20)?.getStringCellValue() == simpleMap.simpleMapKey1
         assert additionalSheet.getCellAt(rowNumber, 21)?.getStringCellValue() == simpleMap."simpleMapKey2"
         assert additionalSheet.getCellAt(rowNumber, 22)?.getStringCellValue() == nestedMap.nestedMapKey.childMapKey
+        assert additionalSheet.getCellAt(rowNumber, 23)?.getStringCellValue() == child.toString()
     }
 }
 
 class ChildObject {
     String stringValue = "childName"
+
+    String toString(){
+        'String representation of this object'
+    }
 }
