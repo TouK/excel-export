@@ -81,7 +81,7 @@ of AdditionalSheet that shares the same row/cell manipulation API as the exporte
     def withProperties = ['name', 'description', 'validTill', 'productNumber', 'price.value']
 
     new WebXlsxExporter().with {
-        setResponseHeaders(response)
+        setResponseHeaders(response)                                                                                                                     print methods of controller
         sheet('second sheet').with {
             fillHeader(withProperties)
             add( products, withProperties )
@@ -117,7 +117,7 @@ And if you'd like to change the name of default sheet, just set it before first 
         ...
     }
 ```
-
+                                                                                                                                               print methods of controller
 #How to export my own types?
 
 This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short), it also handles nested properties, and if everything fails, tries to call toString(). But sooner or later, you'll want to export a property of a different type the way you like it.
@@ -235,7 +235,7 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime (":excel-export:0.1.10")     //#2 important thing
+        runtime (":excel-export:0.2.1")     //#2 important thing
         ...
     }
     ...
@@ -287,7 +287,7 @@ Hope it helps.
 
 #License
 
-Copyright 2012 TouK
+Copyright 2012-2014 TouK
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
