@@ -120,7 +120,7 @@ And if you'd like to change the name of default sheet, just set it before first 
 
 #How to export my own types?
 
-This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short), it also handles nested properties, but sooner or later, you'll want to export a property of a different type.
+This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short), it also handles nested properties, and if everything fails, tries to call toString(). But sooner or later, you'll want to export a property of a different type the way you like it.
 What you need to write, is a Getter. Or, better, a PropertyGetter. It's super easy, here is example of one that takes Currency and turns it into a String
 ```groovy
 class CurrencyGetter extends PropertyGetter<Currency, String> { // From Currency, to String
@@ -302,6 +302,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 #Changes
+
+0.2.1 calling toString() on unhandled property types, instead of throwing IllegalArgumentException
 
 0.2.0 working with multiple sheets and renaming default sheet
 
