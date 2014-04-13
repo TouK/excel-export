@@ -31,19 +31,24 @@ class RowManipulationAbility {
         return this
     }
 
-    SheetManipulator add(List<Object> objects, List<Object> selectedProperties) {
-        add(objects, selectedProperties, 1)
+    SheetManipulator add(List<Object> objects, List<Object> selectedProperties, boolean evaluateAsExpressions = false) {
+        add(objects, selectedProperties, 1, evaluateAsExpressions)
     }
 
-    SheetManipulator add(List<Object> objects, List<Object> selectedProperties, int rowNumber) {
+    SheetManipulator add(List<Object> objects, List<Object> selectedProperties, int rowNumber, boolean evaluateAsExpressions = false) {
         objects.eachWithIndex() { Object object, int index ->
-            RowManipulationAbility.add(this, object, selectedProperties, rowNumber + index)
+            RowManipulationAbility.add(this, object, selectedProperties, rowNumber + index, evaluateAsExpressions)
         }
         return this
     }
 
-    SheetManipulator add(Object object, List<Object> selectedProperties, int rowNumber) {
-        List<Object> properties = RowManipulationAbility.getPropertiesFromObject(object, Formatters.convertSafelyToGetters(selectedProperties))
+    SheetManipulator add(Object object, List<Object> selectedProperties, int rowNumber, boolean evaluateAsExpressions = false) {
+        List<Object> properties = null
+        if(evaluateAsExpressions){
+            properties = RowManipulationAbility.evaluatePropertiesFromObject(object, selectedProperties)
+        } else {
+            properties = RowManipulationAbility.getPropertiesFromObject(object, Formatters.convertSafelyToGetters(selectedProperties))
+        }
         fillRow(properties, rowNumber)
     }
 
@@ -57,6 +62,12 @@ class RowManipulationAbility {
 
     private static List<Object> getPropertiesFromObject(Object object, List<Getter> selectedProperties) {
         selectedProperties.collect { it.getFormattedValue(object) }
+    }
+
+    private static List<Object> evaluatePropertiesFromObject(Object object, List selectedProperties) {
+        selectedProperties.collect { expression -> 
+            Eval.me('it', object, expression)
+        }
     }
 
     private static boolean verifyPropertyTypeCanBeHandled(Object property) {
