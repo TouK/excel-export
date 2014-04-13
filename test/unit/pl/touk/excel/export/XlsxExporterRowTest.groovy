@@ -96,6 +96,18 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         assert xlsxReporter.getCellAt(0, 4).getNumericCellValue() == Math.sqrt(testObject.doubleValue)
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    void shouldThrowExceptionWhenBadExpresionIsPassedAsArgument() {
+        //given
+        SampleObject testObject = new SampleObject()
+        def propertyExpressions = [
+            'stringValue', 
+        ]
+
+        //when
+        xlsxReporter.add(testObject, propertyExpressions, 0, true)
+    }
+
     @Test
     void shouldFillRows() {
         //given

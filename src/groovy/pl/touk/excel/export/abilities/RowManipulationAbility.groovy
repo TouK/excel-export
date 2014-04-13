@@ -66,7 +66,18 @@ class RowManipulationAbility {
 
     private static List<Object> evaluatePropertiesFromObject(Object object, List selectedProperties) {
         selectedProperties.collect { expression -> 
-            Eval.me('it', object, expression)
+            def expresionValue = null
+            if(!(expression instanceof String)) {
+                throw new IllegalArgumentException('List of properties, which should be String, when "evaluateAsClosure" is true. Found: ' +
+                        expression?.toString() + ' of class ' + expression?.getClass())
+            }
+            try {
+                expresionValue = Eval.me('it', object, expression)
+            } catch(Exception e) {
+                throw new IllegalArgumentException('List of properties, which should be a valid groovy expression, when "evaluateAsClosure" is true. Found: ' +
+                        expression?.toString(), e)
+            }
+            expresionValue
         }
     }
 
