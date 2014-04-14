@@ -78,36 +78,26 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         //given
         SampleObject testObject = new SampleObject()
         def propertyExpressions = [
-            '',
-            'it.stringValue', 
-            'it.booleanValue?" it is true ":"it is false "',
-            'it.shortValue + it.integerValue',
-            'Math.sqrt(it.doubleValue)'
+           'stringValue',
+           { it.stringValue },
+           { it.child.stringValue.toUpperCase() },
+           { it.booleanValue?" it is true ":"it is false " },
+           { it.shortValue + it.integerValue },
+           { Math.sqrt(it.doubleValue) }
         ]
 
         //when
-        xlsxReporter.add(testObject, propertyExpressions, 0, true)
+        xlsxReporter.add(testObject, propertyExpressions, 0)
 
         //then
-        assert xlsxReporter.getCellAt(0, 0).getStringCellValue() == ''
+        assert xlsxReporter.getCellAt(0, 0).getStringCellValue() == testObject.stringValue
         assert xlsxReporter.getCellAt(0, 1).getStringCellValue() == testObject.stringValue
-        assert xlsxReporter.getCellAt(0, 2).getStringCellValue() == testObject.booleanValue?" it is true ":"it is false "
-        assert xlsxReporter.getCellAt(0, 3).getNumericCellValue() == testObject.integerValue + testObject.shortValue
-        assert xlsxReporter.getCellAt(0, 4).getNumericCellValue() == Math.sqrt(testObject.doubleValue)
+        assert xlsxReporter.getCellAt(0, 2).getStringCellValue() == testObject.child.stringValue.toUpperCase()
+        assert xlsxReporter.getCellAt(0, 3).getStringCellValue() == testObject.booleanValue?" it is true ":"it is false "
+        assert xlsxReporter.getCellAt(0, 4).getNumericCellValue() == testObject.integerValue + testObject.shortValue
+        assert xlsxReporter.getCellAt(0, 5).getNumericCellValue() == Math.sqrt(testObject.doubleValue)
     }
-
-    @Test(expected=IllegalArgumentException.class)
-    void shouldThrowExceptionWhenBadExpresionIsPassedAsArgument() {
-        //given
-        SampleObject testObject = new SampleObject()
-        def propertyExpressions = [
-            'stringValue', 
-        ]
-
-        //when
-        xlsxReporter.add(testObject, propertyExpressions, 0, true)
-    }
-
+    
     @Test
     void shouldFillRows() {
         //given
