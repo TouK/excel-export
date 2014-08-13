@@ -1,4 +1,4 @@
-This is excel-export Grails plugin using Apache POI
+This is the excel-export Grails plugin using Apache POI
 
 #What does it do?
 
@@ -6,13 +6,13 @@ It exports your objects to an xlsx (MS Excel 2007+) file, while still allowing y
 
 #When should I use it?
 
-There are two scenarios on which this plugin was created:
+There are two scenarios for which this plugin was created:
 
 1. When you want to export data from your controllers ('download to excel' button) and want to maintain full control of how you handle this data.
 
 2. When your customer says: 'I want 100 reports in this new project' and nobody has any clue what those reports look like, you can use this plugin as a DSL, i.e. tell your client 'Hey, I've got good news. We have a nice DSL for you, so that you can write all those reports yourself. And it's free!' (or charge them anyway).
 
-In both cases you can export either to a file on disk, or to outputStream (download as xlsx).
+In both cases, you can export either to a file on disk or to outputStream (download as xlsx).
 
 This plugin has been used like this in commercial projects.
 
@@ -31,9 +31,9 @@ new XlsxExporter('/tmp/myReportFile.xlsx').
 ```
 withProperties is a list of properties that are going to be exported to xlsx, in the given order.
 
-Notice, that you can use nested properties (price.value) of your objects.
+Notice that you can use nested properties (e.g. price.value) of your objects.
 
-To add a header, and make it downloadable from a controller, you do this:
+To add a header and make it downloadable from a controller, you do this:
 ```groovy
 def headers = ['Name', 'Description', 'Valid Till', 'Product Number', 'Price']
 def withProperties = ['name', 'description', 'validTill', 'productNumber', 'price.value']
@@ -120,7 +120,7 @@ And if you'd like to change the name of default sheet, just set it before first 
                                                                                                                                                print methods of controller
 #How to export my own types?
 
-This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short), it also handles nested properties, and if everything fails, tries to call toString(). But sooner or later, you'll want to export a property of a different type the way you like it.
+This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short). It also handles nested properties, and if everything fails, tries to call toString(). But sooner or later, you'll want to export a property of a different type the way you like it.
 What you need to write, is a Getter. Or, better, a PropertyGetter. It's super easy, here is example of one that takes Currency and turns it into a String
 ```groovy
 class CurrencyGetter extends PropertyGetter<Currency, String> { // From Currency, to String
@@ -187,9 +187,9 @@ This will use grails i18n, based on the value of some property ('type' in here) 
 
 #I want fancy diagrams, colours, and other stuff in my Excel!
 
-Making xlsx files look really great with Apache POI is pretty fun. But not very efficient. So we have found out, that it's easier to create a template manually (in MS Excel or Open Office), load this template in your code, fill it up with data, and handle back to the user.
+Making xlsx files look really great with Apache POI is pretty fun but not very efficient. So we have found out that it's easier to create a template manually (in MS Excel or Open Office), load this template in your code, fill it up with data, and hand it back to the user.
 
-For this scenario, every constructor takes a path to a template file (just normal xlsx file).
+For this scenario, every constructor takes a path to a template file (just a normal xlsx file).
 
 After loading the template, fill the data, and save to the output stream
 ```groovy
