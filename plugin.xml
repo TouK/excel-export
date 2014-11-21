@@ -1,4 +1,4 @@
-<plugin name='excel-export' version='0.2.1' grailsVersion='2.0 &gt; *'>
+<plugin name='excel-export' version='0.2.2-webnog' grailsVersion='2.0 &gt; *'>
   <author>Jakub Nabrdalik</author>
   <authorEmail>jakubn@gmail.com</authorEmail>
   <title>Excel Export Plugin</title>
