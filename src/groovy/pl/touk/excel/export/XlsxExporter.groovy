@@ -39,7 +39,7 @@ class XlsxExporter implements SheetManipulator {
         setUp(workbook)
     }
     XlsxExporter(File f) {
-        XlsxExporter(f.path)
+        this(f.path)
     }
     private XSSFWorkbook createOrLoadWorkbook(String fileNameWithPath) {
         if(new File(fileNameWithPath).exists()) {
