@@ -1,6 +1,6 @@
 class ExcelExportGrailsPlugin {
     // the plugin version
-    def version = "0.2.2-webnog"
+    def version = "0.2.3-webnog"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.0 > *"
     // the other plugins this plugin depends on
