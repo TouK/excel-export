@@ -11,6 +11,12 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     repositories {
+        inherits true // Whether to inherit repository definitions from plugins
+
+        grailsPlugins()
+        grailsHome()
+        mavenLocal()
+        
         grailsCentral()
         mavenCentral()
 
