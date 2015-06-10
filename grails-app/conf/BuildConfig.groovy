@@ -22,15 +22,16 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo "http://repo.grails.org/grails/repo/"
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        compile (group:'org.apache.poi', name:'poi', version:'3.7');
-        compile (group:'org.apache.poi', name:'poi-ooxml', version:'3.7') {
+        compile (group:'org.apache.poi', name:'poi', version:'3.11');
+        compile (group:'org.apache.poi', name:'poi-ooxml', version:'3.11') {
             excludes 'stax-api'
         }
-        compile ('org.apache.poi:poi-ooxml-schemas:3.7') {
+        compile ('org.apache.poi:poi-ooxml-schemas:3.11') {
             excludes 'stax-api'
         }
         compile ('dom4j:dom4j:1.6.1')
