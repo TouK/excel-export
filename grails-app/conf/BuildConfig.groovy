@@ -17,15 +17,16 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-        compile (group:'org.apache.poi', name:'poi', version:'3.7');
-        compile (group:'org.apache.poi', name:'poi-ooxml', version:'3.7') {
+        String poiVersion = '3.12'
+        compile ('org.apache.poi:poi:' + poiVersion)
+        compile ('org.apache.poi:poi-ooxml:' + poiVersion) {
             excludes 'stax-api'
         }
-        compile ('org.apache.poi:poi-ooxml-schemas:3.7') {
+        compile ('org.apache.poi:ooxml-schemas:1.1') {
             excludes 'stax-api'
         }
         compile ('dom4j:dom4j:1.6.1')
-        runtime('xerces:xercesImpl:2.10.0') {
+        runtime('xerces:xercesImpl:2.11.0') {
             excludes 'xml-apis'
         }
     }
