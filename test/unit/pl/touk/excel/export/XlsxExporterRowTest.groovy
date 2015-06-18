@@ -74,6 +74,31 @@ class XlsxExporterRowTest extends XlsxExporterTest {
     }
 
     @Test
+    void shouldFillRowEvaluatingPropertyList() {
+        //given
+        SampleObject testObject = new SampleObject()
+        def propertyExpressions = [
+           'stringValue',
+           { it.stringValue },
+           { it.child.stringValue.toUpperCase() },
+           { it.booleanValue?" it is true ":"it is false " },
+           { it.shortValue + it.integerValue },
+           { Math.sqrt(it.doubleValue) }
+        ]
+
+        //when
+        xlsxReporter.add(testObject, propertyExpressions, 0)
+
+        //then
+        assert xlsxReporter.getCellAt(0, 0).getStringCellValue() == testObject.stringValue
+        assert xlsxReporter.getCellAt(0, 1).getStringCellValue() == testObject.stringValue
+        assert xlsxReporter.getCellAt(0, 2).getStringCellValue() == testObject.child.stringValue.toUpperCase()
+        assert xlsxReporter.getCellAt(0, 3).getStringCellValue() == testObject.booleanValue?" it is true ":"it is false "
+        assert xlsxReporter.getCellAt(0, 4).getNumericCellValue() == testObject.integerValue + testObject.shortValue
+        assert xlsxReporter.getCellAt(0, 5).getNumericCellValue() == Math.sqrt(testObject.doubleValue)
+    }
+    
+    @Test
     void shouldFillRows() {
         //given
         List objects = [new SampleObject(), new SampleObject(), new SampleObject()]
