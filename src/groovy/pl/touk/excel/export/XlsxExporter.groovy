@@ -38,7 +38,9 @@ class XlsxExporter implements SheetManipulator {
         this.workbook = createOrLoadWorkbook(destinationFileNameWithPath)
         setUp(workbook)
     }
-
+    XlsxExporter(File f) {
+        this(f.path)
+    }
     private XSSFWorkbook createOrLoadWorkbook(String fileNameWithPath) {
         if(new File(fileNameWithPath).exists()) {
             zipPackage = OPCPackage.open(fileNameWithPath);
