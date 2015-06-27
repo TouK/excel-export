@@ -1,14 +1,15 @@
 class ExcelExportGrailsPlugin {
     // the plugin version
-    def version = "0.2.1"
+    def version = "1.0.0"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "2.0 > *"
+    def grailsVersion = "3.0.2 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-        "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp"
     ]
+    def profiles = ['web']
 
     // TODO Fill in these fields
     def title = "Excel Export Plugin" // Headline display name of the plugin
@@ -25,16 +26,16 @@ class ExcelExportGrailsPlugin {
     def license = "APACHE"
 
     // Details of company behind the plugin (if there is one)
-    def organization = [ name: "TouK", url: "http://touk.pl/" ]
+    def organization = [name: "TouK", url: "http://touk.pl/"]
 
     // Any additional developers beyond the author specified above.
-    def developers = [ [ name: "Jakub Nabrdalik", email: "jakubn@gmail.com" ]]
+    def developers = [[name: "Jakub Nabrdalik", email: "jakubn@gmail.com"], [name: "Mansi Arora", email: "mansi.arora@tothenew.com"]]
 
     // Location of the plugin's issue tracker.
-    def issueManagement = [ system: "Github", url: "https://github.com/TouK/excel-export/issues" ]
+    def issueManagement = [system: "Github", url: "https://github.com/TouK/excel-export/issues"]
 
     // Online location of the plugin's browseable source code.
-    def scm = [ url: "https://github.com/TouK/excel-export" ]
+    def scm = [url: "https://github.com/TouK/excel-export"]
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before
