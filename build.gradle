@@ -26,8 +26,8 @@ apply plugin: "spring-boot"
 apply plugin: "org.grails.grails-plugin"
 apply plugin: "org.grails.grails-gsp"
 // Used for publishing to central repository, remove if not needed
-apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/grailsCentralPublishing.gradle'
-apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/bintrayPublishing.gradle'
+apply from: 'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/grailsCentralPublishing.gradle'
+apply from: 'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/bintrayPublishing.gradle'
 
 ext {
     grailsVersion = project.grailsVersion
@@ -64,6 +64,21 @@ dependencies {
     testCompile "org.grails:grails-plugin-testing"
 
     console "org.grails:grails-console"
+
+    compile('org.apache.poi:poi:3.12')
+
+    compile('org.apache.poi:poi-ooxml:3.12') {
+        exclude module: 'stax-api'
+    }
+
+    compile('org.apache.poi:ooxml-schemas:1.1') {
+        exclude module: 'stax-api'
+    }
+    compile('dom4j:dom4j:1.6.1')
+
+    runtime('xerces:xercesImpl:2.11.0') {
+        exclude module: 'xml-apis'
+    }
 }
 
 task wrapper(type: Wrapper) {
