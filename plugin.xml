@@ -1,9 +1,0 @@
-<plugin name='excel-export' version='0.2.1' grailsVersion='2.0 &gt; *'>
-  <author>Jakub Nabrdalik</author>
-  <authorEmail>jakubn@gmail.com</authorEmail>
-  <title>Excel Export Plugin</title>
-  <description>This plugin helps you export data in Excel (xlsx) format, using Apache POI.</description>
-  <documentation>https://github.com/TouK/excel-export/blob/master/README.md</documentation>
-  <type>ExcelExportGrailsPlugin</type>
-  <resources />
-</plugin>
