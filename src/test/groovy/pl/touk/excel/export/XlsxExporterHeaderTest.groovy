@@ -1,32 +1,30 @@
 package pl.touk.excel.export
-import org.junit.Test
 
 import static pl.touk.excel.export.Formatters.asDate
 
 class XlsxExporterHeaderTest extends XlsxExporterTest {
-    @Test
+
     void shouldCreateHeader() {
-        //given
+        given:
         List headerProperties = ["First", "Second", "Third"]
 
-        //when
+        when:
         xlsxReporter.fillHeader(headerProperties)
         xlsxReporter.save()
 
-        //then
+        then:
         verifyValuesAtRow(headerProperties, 0)
     }
 
-    @Test
     void shouldAcceptDatesInHeader() {
-        //given
+        given:
         List headerProperties = ["First", asDate("MyDateAsLong"), "Third"]
 
-        //when
+        when:
         xlsxReporter.fillHeader(headerProperties)
         xlsxReporter.save()
 
-        //then
+        then:
         verifyValuesAtRow(headerProperties, 0)
     }
 }

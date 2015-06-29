@@ -1,19 +1,17 @@
 package pl.touk.excel.export
-import org.junit.Test
 
 class XlsxExporterMultipleSheetTest extends XlsxExporterTest {
-    @Test
     void shouldFillRowsInSeparateSheets() {
-        //given
+        given:
         List objectsForDefaultSheet = [new SampleObject(), new SampleObject(), new SampleObject()]
         List objectsForNamedSheet = [new SampleObject(), new SampleObject(), new SampleObject()]
         String sheetName = "sheet2"
 
-        //when
+        when:
         xlsxReporter.add(objectsForDefaultSheet, SampleObject.propertyNames, 0)
         xlsxReporter.sheet(sheetName).add( objectsForNamedSheet, SampleObject.propertyNames, 0)
 
-        //then
+        then:
         verifySaved(objectsForDefaultSheet, XlsxExporter.defaultSheetName)
         verifySaved(objectsForNamedSheet, sheetName)
     }

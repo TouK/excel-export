@@ -1,36 +1,32 @@
-
 package pl.touk.excel.export
 
-import org.junit.Test
-
 class XlsxExporterDateStyleTest extends XlsxExporterTest {
-    @Test
+
     void shouldSetDefaultDateStyleForDateCells() {
-        //given
+        given:
         String stringValue = "spomething"
         Date dateValue = new Date()
 
-        //when
+        when:
         xlsxReporter.
                 putCellValue(0, 0, stringValue).
                 putCellValue(0, 1, dateValue)
 
-        //then
-        assert xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == "General"
-        assert xlsxReporter.getCellAt(0, 1).getCellStyle().getDataFormatString() == XlsxExporter.defaultDateFormat
+        then:
+        xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == "General"
+        xlsxReporter.getCellAt(0, 1).getCellStyle().getDataFormatString() == XlsxExporter.defaultDateFormat
     }
 
-    @Test
     void shouldSetDateStyleForDateCells() {
-        //given
+        given:
         Date dateValue = new Date()
         String expectedFormat = "yyyy-MM-dd"
 
-        //when
+        when:
         xlsxReporter.setDateCellFormat(expectedFormat)
         xlsxReporter.putCellValue(0, 0, dateValue)
 
-        //then
-        assert xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == expectedFormat
+        then:
+        xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == expectedFormat
     }
 }

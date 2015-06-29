@@ -6,9 +6,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import pl.touk.excel.export.getters.Getter
+import spock.lang.Specification
 
-abstract class XlsxTestOnTemporaryFolder {
-    @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+abstract class XlsxTestOnTemporaryFolder extends Specification {
+    @Rule
+    public TemporaryFolder temporaryFolder = new TemporaryFolder();
     File testFolder
 
     @Before
@@ -42,6 +44,6 @@ abstract class XlsxTestOnTemporaryFolder {
     }
 
     protected XSSFCell getCell(XSSFWorkbook workbook, int rowNumber, int columnNumber) {
-        return workbook.getSheet(XlsxExporter.defaultSheetName).getRow((Short)rowNumber).getCell((Short)columnNumber)
+        return workbook.getSheet(XlsxExporter.defaultSheetName).getRow((Short) rowNumber).getCell((Short) columnNumber)
     }
 }
