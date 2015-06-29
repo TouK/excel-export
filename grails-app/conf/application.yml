@@ -2,7 +2,7 @@
 grails:
     profile: web-plugin
     codegen:
-        defaultPackage: excel.export
+        defaultPackage: pl.touk.excel.export
 info:
     app:
         name: '@info.app.name@'

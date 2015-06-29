@@ -1,4 +1,4 @@
-package excel.export
+package pl.touk.excel.export
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration
