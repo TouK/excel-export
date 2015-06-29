@@ -1,19 +1,13 @@
-import grails.plugins.Plugin
+package pl.touk.excel.export
+
+import grails.plugins.*
 
 class ExcelExportGrailsPlugin extends Plugin {
     // the plugin version
-    def version = "1.0-SNAPSHOT"
+    def version = "2.0.0-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.0.2 > *"
-    // the other plugins this plugin depends on
-    def dependsOn = [:]
-    // resources that are excluded from plugin packaging
-    def pluginExcludes = [
-            "grails-app/views/error.gsp"
-    ]
-    def profiles = ['web']
 
-    // TODO Fill in these fields
     def title = "Excel Export Plugin" // Headline display name of the plugin
     def author = "Jakub Nabrdalik"
     def authorEmail = "jakubn@gmail.com"
@@ -39,34 +33,37 @@ class ExcelExportGrailsPlugin extends Plugin {
     // Online location of the plugin's browseable source code.
     def scm = [url: "https://github.com/TouK/excel-export"]
 
-    def doWithWebDescriptor = { xml ->
-        // TODO Implement additions to web.xml (optional), this event occurs before
-    }
+    // resources that are excluded from plugin packaging
+    def pluginExcludes = [
+            "grails-app/views/error.gsp"
+    ]
+    def profiles = ['web']
 
-    def doWithSpring = {
+    Closure doWithSpring() { {->
         // TODO Implement runtime spring config (optional)
     }
+    }
 
-    def doWithDynamicMethods = { ctx ->
+    void doWithDynamicMethods() {
         // TODO Implement registering dynamic methods to classes (optional)
     }
 
-    def doWithApplicationContext = { applicationContext ->
+    void doWithApplicationContext() {
         // TODO Implement post initialization spring config (optional)
     }
 
-    def onChange = { event ->
+    void onChange(Map<String, Object> event) {
         // TODO Implement code that is executed when any artefact that this plugin is
         // watching is modified and reloaded. The event contains: event.source,
         // event.application, event.manager, event.ctx, and event.plugin.
     }
 
-    def onConfigChange = { event ->
+    void onConfigChange(Map<String, Object> event) {
         // TODO Implement code that is executed when the project configuration changes.
         // The event is the same as for 'onChange'.
     }
 
-    def onShutdown = { event ->
+    void onShutdown(Map<String, Object> event) {
         // TODO Implement code that is executed when the application shuts down (optional)
     }
 }
