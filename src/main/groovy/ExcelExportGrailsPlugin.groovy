@@ -2,7 +2,7 @@ import grails.plugins.Plugin
 
 class ExcelExportGrailsPlugin extends Plugin {
     // the plugin version
-    def version = "1.0.0"
+    def version = "1.0-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.0.2 > *"
     // the other plugins this plugin depends on
