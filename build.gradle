@@ -1,3 +1,5 @@
+import com.sun.org.apache.regexp.internal.recompile
+
 buildscript {
     ext {
         grailsVersion = project.grailsVersion
@@ -75,6 +77,9 @@ dependencies {
         exclude module: 'stax-api'
     }
     compile('dom4j:dom4j:1.6.1')
+
+    compile('org.apache.commons:commons-io:1.3.2')
+    compile('xml-apis:xml-apis:1.4.01')
 
     testRuntime('xerces:xercesImpl:2.11.0') {
         exclude module: 'xml-apis'
