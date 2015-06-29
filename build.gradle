@@ -76,7 +76,7 @@ dependencies {
     }
     compile('dom4j:dom4j:1.6.1')
 
-    runtime('xerces:xercesImpl:2.11.0') {
+    testRuntime('xerces:xercesImpl:2.11.0') {
         exclude module: 'xml-apis'
     }
 }
