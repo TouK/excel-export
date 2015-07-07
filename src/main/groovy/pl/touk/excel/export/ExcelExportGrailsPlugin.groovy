@@ -3,8 +3,6 @@ package pl.touk.excel.export
 import grails.plugins.*
 
 class ExcelExportGrailsPlugin extends Plugin {
-    // the plugin version
-    def version = "2.0.0-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.0.2 > *"
 
