@@ -226,20 +226,12 @@ and of course you have a corresponding setCellStyle method, but this is pure Apa
 #How to get it installed?
 
 The plugin is released like all other Grails plugins, to grailsPlugin repo.
-Here is what you need to add to your BuildConfig.groovy
+Here is what you need to add to your build.gradle
 ```groovy
-grails.project.dependency.resolution = {
-    inherits("global") {
-        ...
-        excludes 'xercesImpl'   //#1 important thing
-    }
-
-    plugins {
-        runtime (":excel-export:0.2.1")     //#2 important thing
-        ...
-    }
-    ...
+dependencies {
+    compile "pl.touk:excel-export:2.0.1"
 }
+
 ```
 Excluding xerces may or may not be needed, depending on your setup. If you get
 ```
@@ -247,16 +239,8 @@ Error executing script RunApp: org/apache/xerces/dom/DeferredElementImpl (Use --
 ```
 you NEED to exclude xercesImpl to use ApachePOI. Don't worry, it won't break anything.
 
-If you have more strange problems with xml and you are using Java 7, exclude xml-apis as well:
-```groovy
-grails.project.dependency.resolution = {
-    inherits("global") {
-        ...
-        excludes 'xercesImpl', 'xml-apis'
-    }
-    ...
-}
-```
+If you have more strange problems with xml and you are using Java 7, exclude xml-apis as well.
+
 To understand why you need to exclude anything, please take a look here: http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
 
 If you want a working example, clone this project: https://github.com/TouK/excel-export-samples
@@ -302,6 +286,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 #Changes
+
+2.0.1 upgrade poi to 3.12 (thanks to Sergio Maria Matone) and Grails to 3+ (thanks to mansiarora)
 
 0.2.1 calling toString() on unhandled property types, instead of throwing IllegalArgumentException
 

@@ -13,11 +13,11 @@ buildscript {
 
 plugins {
     id "io.spring.dependency-management" version "0.5.1.RELEASE"
-    id "com.jfrog.bintray" version "1.1"
+    id "com.jfrog.bintray" version "1.2"
 }
 
-version "2.0.0-SNAPSHOT"
-group "org.grails.plugins"
+version "2.0.1"
+group "pl.touk"
 
 apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
@@ -34,8 +34,8 @@ ext {
     gradleWrapperVersion = project.gradleWrapperVersion
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 
 repositories {
@@ -86,4 +86,17 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
+}
+
+bintray {
+    pkg {
+        userOrg = '' // If you want to publish to an organization
+        name = "jakubnabrdalik.plugins:$project.name"
+        issueTrackerUrl = "https://github.com/TouK/$project.name/issues"
+        vcsUrl = "https://github.com/TouK/$project.name"
+        version {
+            attributes = ['grails-plugin': "jakubnabrdalik.plugins:$project.name"]
+            name = project.version
+        }
+    }
 }
