@@ -1,5 +1,7 @@
 This is the excel-export Grails plugin using Apache POI
 
+[![Build Status](https://travis-ci.org/TouK/excel-export.svg?branch=master)](https://travis-ci.org/TouK/excel-export) 
+
 #What does it do?
 
 It exports your objects to an xlsx (MS Excel 2007+) file, while still allowing you to handle the export file on a cell-by-cell basis.
