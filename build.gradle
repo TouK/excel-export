@@ -17,7 +17,7 @@ plugins {
 }
 
 version "2.0.1"
-group "pl.touk"
+group "org.grails.plugins"
 
 apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
