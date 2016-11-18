@@ -1,8 +1,8 @@
 package pl.touk.excel.export
 
-class XlsxExporterDateStyleTest extends XlsxExporterTest {
+class XlsxExporterDateStyleSpec extends XlsxExporterSpec {
 
-    void shouldSetDefaultDateStyleForDateCells() {
+    void "should set default date style for date cells"() {
         given:
         String stringValue = "spomething"
         Date dateValue = new Date()
@@ -13,11 +13,11 @@ class XlsxExporterDateStyleTest extends XlsxExporterTest {
                 putCellValue(0, 1, dateValue)
 
         then:
-        xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == "General"
-        xlsxReporter.getCellAt(0, 1).getCellStyle().getDataFormatString() == XlsxExporter.defaultDateFormat
+        xlsxReporter.getCellAt(0, 0).cellStyle.dataFormatString == "General"
+        xlsxReporter.getCellAt(0, 1).cellStyle.dataFormatString == XlsxExporter.defaultDateFormat
     }
 
-    void shouldSetDateStyleForDateCells() {
+    void "should set date style for date cells"() {
         given:
         Date dateValue = new Date()
         String expectedFormat = "yyyy-MM-dd"
@@ -27,6 +27,6 @@ class XlsxExporterDateStyleTest extends XlsxExporterTest {
         xlsxReporter.putCellValue(0, 0, dateValue)
 
         then:
-        xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString() == expectedFormat
+        xlsxReporter.getCellAt(0, 0).cellStyle.dataFormatString == expectedFormat
     }
 }

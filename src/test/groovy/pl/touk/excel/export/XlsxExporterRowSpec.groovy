@@ -1,11 +1,10 @@
 package pl.touk.excel.export
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import org.junit.Test
 
-class XlsxExporterRowTest extends XlsxExporterTest {
+class XlsxExporterRowSpec extends XlsxExporterSpec {
 
-    void shouldFillRowAtFirstPosition() throws IOException {
+    void "should fill row at first position"() throws IOException {
         given:
         List rowValues = ["First", "Second", "Third", " "]
 
@@ -17,7 +16,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         verifyValuesAtRow(rowValues, 1)
     }
 
-    void shouldFillRowAtPosition() throws IOException {
+    void "should fill row at position"() throws IOException {
         given:
         List rowValues = ["First", "Second", "Third", " "]
         int rowNumber = 15
@@ -30,7 +29,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         verifyValuesAtRow(rowValues, rowNumber)
     }
 
-    void shouldFillRowAtPositionWithZero() throws IOException {
+    void "should fill row at position with zero"() throws IOException {
         given:
         List rowValues = [0]
         int rowNumber = 25
@@ -40,10 +39,10 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         xlsxReporter.save()
 
         then:
-        getCell(new XSSFWorkbook(getFilePath()), rowNumber, 0).getNumericCellValue() == 0
+        getCell(new XSSFWorkbook(filePath), rowNumber, 0).numericCellValue == 0
     }
 
-    void shouldHandleSubclassesOfValidTypesInProperties() {
+    void "should handle subclasses of valid types in properties"() {
         given:
         java.util.Date handledType = new java.util.Date(123123)
         java.sql.Date subclassOfHandledType = new java.sql.Date(321321)
@@ -58,7 +57,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         verifyDateAt(subclassOfHandledType, 1, 1)
     }
 
-    void shouldFillRowFromPropertyList() {
+    void "should fill row from property list"() {
         given:
         SampleObject testObject = new SampleObject()
 
@@ -69,7 +68,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         testObject.verifyRowHasSelectedProperties(xlsxReporter.withDefaultSheet(), 3)
     }
 
-    void shouldFillRows() {
+    void "should fill rows"() {
         given:
         List objects = [new SampleObject(), new SampleObject(), new SampleObject()]
 
@@ -82,7 +81,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         }
     }
 
-    void shouldFillRowsFromListsOfMaps() {
+    void "should fill rows from lists of maps"() {
         given:
         List stones = [[first: 'Keith'], [first: 'Mick']]
 
@@ -90,11 +89,11 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         xlsxReporter.add(stones, ['first'], 0)
 
         then:
-        xlsxReporter.getCellAt(0, 0).getStringCellValue() == stones[0].first
-        xlsxReporter.getCellAt(1, 0).getStringCellValue() == stones[1].first
+        xlsxReporter.getCellAt(0, 0).stringCellValue == stones[0].first
+        xlsxReporter.getCellAt(1, 0).stringCellValue == stones[1].first
     }
 
-    void shouldHandleNullsWhenFoundInMap() {
+    void "should handle nulls when found in map"() {
         given:
         List stones = [[middle: null]]
 
@@ -102,10 +101,10 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         xlsxReporter.add(stones, ['middle'], 0)
 
         then:
-        xlsxReporter.getCellAt(0, 0).getStringCellValue() == ''
+        xlsxReporter.getCellAt(0, 0).stringCellValue == ''
     }
 
-    void shouldHandleListAsToString() {
+    void "should handle list as to string"() {
         given:
         List<ArrayList> objects = [new SampleObjectWithList(), new SampleObjectWithList()]
 
@@ -113,7 +112,7 @@ class XlsxExporterRowTest extends XlsxExporterTest {
         xlsxReporter.add(objects, ['list'], 0)
 
         then:
-        xlsxReporter.getCellAt(0, 0).getStringCellValue() == objects[0].list.toString()
-        xlsxReporter.getCellAt(1, 0).getStringCellValue() == objects[1].list.toString()
+        xlsxReporter.getCellAt(0, 0).stringCellValue == objects[0].list.toString()
+        xlsxReporter.getCellAt(1, 0).stringCellValue == objects[1].list.toString()
     }
 }

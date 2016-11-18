@@ -3,7 +3,7 @@ package pl.touk.excel.export
 import org.apache.commons.io.output.NullOutputStream
 import spock.lang.Ignore
 
-class WebXlsxExporterTest extends XlsxTestOnTemporaryFolder {
+class WebXlsxExporterSpec extends XlsxExporterSpec {
     String originalValue = "1"
     int valueRow = 0
     int valueColumn = 0
@@ -12,7 +12,7 @@ class WebXlsxExporterTest extends XlsxTestOnTemporaryFolder {
             but it may be for caches. I leave this test here to make sure we do not fall into writing it again and
             feeling safe*/
     @Ignore
-    void shouldNotOverwriteTemplate() {
+    void "should not overwrite template"() {
         given:
         new XlsxExporter(getFilePath()).with {
             putCellValue(valueRow, valueColumn, originalValue)

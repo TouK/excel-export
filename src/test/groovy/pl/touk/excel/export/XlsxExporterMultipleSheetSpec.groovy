@@ -1,7 +1,8 @@
 package pl.touk.excel.export
 
-class XlsxExporterMultipleSheetTest extends XlsxExporterTest {
-    void shouldFillRowsInSeparateSheets() {
+class XlsxExporterMultipleSheetSpec extends XlsxExporterSpec {
+
+    void "should fill rows in separate sheets"() {
         given:
         List objectsForDefaultSheet = [new SampleObject(), new SampleObject(), new SampleObject()]
         List objectsForNamedSheet = [new SampleObject(), new SampleObject(), new SampleObject()]

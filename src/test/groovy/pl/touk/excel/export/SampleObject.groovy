@@ -1,4 +1,3 @@
-
 package pl.touk.excel.export
 
 import pl.touk.excel.export.multisheet.AdditionalSheet
@@ -36,31 +35,31 @@ class SampleObject {
     EnumObject enumValue = EnumObject.SECOND_VALUE
 
     private void verifyRowHasSelectedProperties(AdditionalSheet additionalSheet, int rowNumber) {
-        assert additionalSheet.getCellAt(rowNumber, 0)?.getStringCellValue() == stringValue
-        assert additionalSheet.getCellAt(rowNumber, 1)?.getDateCellValue() == dateValue
-        assert additionalSheet.getCellAt(rowNumber, 2)?.getNumericCellValue() == longValue
-        assert additionalSheet.getCellAt(rowNumber, 3)?.getBooleanCellValue() == booleanValue
-        assert additionalSheet.getCellAt(rowNumber, 4)?.getDateCellValue() == new Date(dateAsLong)
-        assert additionalSheet.getCellAt(rowNumber, 5)?.getStringCellValue() == ''
-        assert additionalSheet.getCellAt(rowNumber, 6)?.getStringCellValue() == child.stringValue
-        assert additionalSheet.getCellAt(rowNumber, 7)?.getNumericCellValue() == bigDecimalValue
-        assert additionalSheet.getCellAt(rowNumber, 8)?.getNumericCellValue() == bigIntegerValue
-        assert additionalSheet.getCellAt(rowNumber, 9)?.getNumericCellValue() == byteValue
-        assert additionalSheet.getCellAt(rowNumber, 10)?.getNumericCellValue() == doubleValue
-        assert additionalSheet.getCellAt(rowNumber, 11)?.getNumericCellValue() == floatValue.toDouble()
-        assert additionalSheet.getCellAt(rowNumber, 12)?.getNumericCellValue() == integerValue
-        assert additionalSheet.getCellAt(rowNumber, 13)?.getNumericCellValue() == shortValue
-        assert additionalSheet.getCellAt(rowNumber, 14)?.getNumericCellValue() == bytePrimitiveValue
-        assert additionalSheet.getCellAt(rowNumber, 15)?.getNumericCellValue() == doublePrimitiveValue
-        assert additionalSheet.getCellAt(rowNumber, 16)?.getNumericCellValue() == floatPrimitiveValue.toDouble()
-        assert additionalSheet.getCellAt(rowNumber, 17)?.getNumericCellValue() == integerPrimitiveValue
-        assert additionalSheet.getCellAt(rowNumber, 18)?.getNumericCellValue() == shortPrimitiveValue
-        assert additionalSheet.getCellAt(rowNumber, 19)?.getBooleanCellValue() == booleanPrimitiveValue
-        assert additionalSheet.getCellAt(rowNumber, 20)?.getStringCellValue() == simpleMap.simpleMapKey1
-        assert additionalSheet.getCellAt(rowNumber, 21)?.getStringCellValue() == simpleMap."simpleMapKey2"
-        assert additionalSheet.getCellAt(rowNumber, 22)?.getStringCellValue() == nestedMap.nestedMapKey.childMapKey
-        assert additionalSheet.getCellAt(rowNumber, 23)?.getStringCellValue() == child.toString()
-        assert additionalSheet.getCellAt(rowNumber, 24)?.getStringCellValue() == EnumObject.SECOND_VALUE.toString()
+        assert additionalSheet.getCellAt(rowNumber, 0)?.stringCellValue == stringValue
+        assert additionalSheet.getCellAt(rowNumber, 1)?.dateCellValue == dateValue
+        assert additionalSheet.getCellAt(rowNumber, 2)?.numericCellValue == longValue
+        assert additionalSheet.getCellAt(rowNumber, 3)?.booleanCellValue == booleanValue
+        assert additionalSheet.getCellAt(rowNumber, 4)?.dateCellValue == new Date(dateAsLong)
+        assert additionalSheet.getCellAt(rowNumber, 5)?.stringCellValue == ''
+        assert additionalSheet.getCellAt(rowNumber, 6)?.stringCellValue == child.stringValue
+        assert additionalSheet.getCellAt(rowNumber, 7)?.numericCellValue == bigDecimalValue
+        assert additionalSheet.getCellAt(rowNumber, 8)?.numericCellValue == bigIntegerValue
+        assert additionalSheet.getCellAt(rowNumber, 9)?.numericCellValue == byteValue
+        assert additionalSheet.getCellAt(rowNumber, 10)?.numericCellValue == doubleValue
+        assert additionalSheet.getCellAt(rowNumber, 11)?.numericCellValue == floatValue.toDouble()
+        assert additionalSheet.getCellAt(rowNumber, 12)?.numericCellValue == integerValue
+        assert additionalSheet.getCellAt(rowNumber, 13)?.numericCellValue == shortValue
+        assert additionalSheet.getCellAt(rowNumber, 14)?.numericCellValue == bytePrimitiveValue
+        assert additionalSheet.getCellAt(rowNumber, 15)?.numericCellValue == doublePrimitiveValue
+        assert additionalSheet.getCellAt(rowNumber, 16)?.numericCellValue == floatPrimitiveValue.toDouble()
+        assert additionalSheet.getCellAt(rowNumber, 17)?.numericCellValue == integerPrimitiveValue
+        assert additionalSheet.getCellAt(rowNumber, 18)?.numericCellValue == shortPrimitiveValue
+        assert additionalSheet.getCellAt(rowNumber, 19)?.booleanCellValue == booleanPrimitiveValue
+        assert additionalSheet.getCellAt(rowNumber, 20)?.stringCellValue == simpleMap.simpleMapKey1
+        assert additionalSheet.getCellAt(rowNumber, 21)?.stringCellValue == simpleMap."simpleMapKey2"
+        assert additionalSheet.getCellAt(rowNumber, 22)?.stringCellValue == nestedMap.nestedMapKey.childMapKey
+        assert additionalSheet.getCellAt(rowNumber, 23)?.stringCellValue == child.toString()
+        assert additionalSheet.getCellAt(rowNumber, 24)?.stringCellValue == EnumObject.SECOND_VALUE.toString()
     }
 }
 

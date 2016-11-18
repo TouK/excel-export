@@ -4,10 +4,9 @@ class SampleObjectWithList {
     List<Integer> list
 
     public SampleObjectWithList() {
-        list = new ArrayList<Integer>();
+        list = new ArrayList<Integer>()
         list.add(1)
         list.add(2)
     }
-
 
 }

@@ -2,9 +2,9 @@ package pl.touk.excel.export
 
 import static pl.touk.excel.export.Formatters.asDate
 
-class XlsxExporterHeaderTest extends XlsxExporterTest {
+class XlsxExporterHeaderSpec extends XlsxExporterSpec {
 
-    void shouldCreateHeader() {
+    void "should create header"() {
         given:
         List headerProperties = ["First", "Second", "Third"]
 
@@ -16,7 +16,7 @@ class XlsxExporterHeaderTest extends XlsxExporterTest {
         verifyValuesAtRow(headerProperties, 0)
     }
 
-    void shouldAcceptDatesInHeader() {
+    void "should accept dates in header"() {
         given:
         List headerProperties = ["First", asDate("MyDateAsLong"), "Third"]
 

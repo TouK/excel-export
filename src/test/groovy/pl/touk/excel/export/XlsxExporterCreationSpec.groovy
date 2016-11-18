@@ -2,50 +2,50 @@ package pl.touk.excel.export
 
 import groovy.io.GroovyPrintStream
 
-class XlsxExporterCreationTest extends XlsxExporterTest {
+class XlsxExporterCreationSpec extends XlsxExporterSpec {
 
-    void shouldCreateDocumentIfDoesntExist() {
-        given:
-        assert !(new File(getFilePath()).exists())
+    void "should create document if doesn't exist"() {
+        expect:
+        !file.exists()
 
         when:
         xlsxReporter.save()
 
         then:
-        new File(getFilePath()).exists()
+        file.exists()
     }
 
-    void shouldSaveToStream() {
+    void "should save to stream"() {
         given:
-        GroovyPrintStream outputStream = new GroovyPrintStream(getFilePath())
+        GroovyPrintStream outputStream = new GroovyPrintStream(filePath)
 
         when:
         xlsxReporter.save(outputStream)
 
         then:
-        new File(getFilePath()).exists()
+        file.exists()
     }
 
-    void shouldOpenExistingDocumentIfExists() {
+    void "should open existing document if exists"() {
         given:
         String myCustomValue = "myCustomValue"
         xlsxReporter.putCellValue(1, 1, myCustomValue)
         xlsxReporter.save()
 
         when:
-        XlsxExporter newXlsxReporter = new XlsxExporter(getFilePath())
+        XlsxExporter newXlsxReporter = new XlsxExporter(filePath)
 
         then:
         getCellValue(newXlsxReporter, 1, 1) == myCustomValue
     }
 
-    void shouldOverrideExistingFile() {
+    void "should override existing file"() {
         given:
         xlsxReporter.putCellValue(1, 1, "old")
         xlsxReporter.save()
 
         when:
-        XlsxExporter newXlsxReporter = new XlsxExporter(getFilePath())
+        XlsxExporter newXlsxReporter = new XlsxExporter(filePath)
         newXlsxReporter.putCellValue(1, 1, "new")
         newXlsxReporter.save()
 
@@ -53,23 +53,23 @@ class XlsxExporterCreationTest extends XlsxExporterTest {
         getCellValue(newXlsxReporter, 1, 1) == "new"
     }
 
-    void shouldNotOverrideExistingFileWhenGivingNewPath() {
+    void "should not override existing file when giving new path"() {
         given:
         xlsxReporter.putCellValue(1, 1, "old")
         xlsxReporter.save()
 
         when:
-        XlsxExporter newXlsxReporter = new XlsxExporter(getFilePath(), testFolder.getAbsolutePath() + "/newTestReport.xlsx")
+        XlsxExporter newXlsxReporter = new XlsxExporter(filePath, testFolder.absolutePath + "/newTestReport.xlsx")
         newXlsxReporter.putCellValue(1, 1, "new")
         newXlsxReporter.save()
 
         then: "no exceptions are thrown and"
-        getCellValue(new XlsxExporter(getFilePath()), 1, 1) == "old"
+        getCellValue(new XlsxExporter(filePath), 1, 1) == "old"
         //otherwise this sucker keeps the value in cache
         getCellValue(newXlsxReporter, 1, 1) == "new"
     }
 
-    void shouldBeAbleToRenameInitialSheet() {
+    void "should be able to rename initial sheet"() {
         given:
         String otherSheetName = 'something else'
 
@@ -78,10 +78,10 @@ class XlsxExporterCreationTest extends XlsxExporterTest {
         namedSheetExporter.setWorksheetName(otherSheetName)
 
         then:
-        assert namedSheetExporter.sheet.sheetName == otherSheetName
+        namedSheetExporter.sheet.sheetName == otherSheetName
     }
 
-    void shouldHaveDefaultNameForInitialSheet() {
+    void "should have default name for initial sheet"() {
         expect:
         new XlsxExporter().sheet.sheetName == XlsxExporter.defaultSheetName
     }
