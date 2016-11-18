@@ -1,9 +1,6 @@
-### Not actively maintained anymore! Wanna take it over? Let us know.
-
 This is the excel-export Grails plugin using Apache POI
 
-[![Build Status](https://travis-ci.org/TouK/excel-export.svg?branch=master)](https://travis-ci.org/TouK/excel-export) [ ![Download](https://api.bintray.com/packages/jakubnabrdalik/plugins/jakubnabrdalik.plugins:excel-export/images/download.svg) ](https://bintray.com/jakubnabrdalik/plugins/jakubnabrdalik.plugins:excel-export/_latestVersion)
-
+[![Build Status](https://travis-ci.org/TouK/excel-export.svg?branch=master)](https://travis-ci.org/TouK/excel-export) [ ![Download](https://api.bintray.com/packages/grails-excel-export/plugins/jakubnabrdalik.plugins%3Aexcel-export/images/download.svg) ](https://bintray.com/grails-excel-export/plugins/jakubnabrdalik.plugins%3Aexcel-export/_latestVersion)
 
 #What does it do?
 
