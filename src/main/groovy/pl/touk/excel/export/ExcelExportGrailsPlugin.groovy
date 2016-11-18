@@ -31,10 +31,6 @@ class ExcelExportGrailsPlugin extends Plugin {
     // Online location of the plugin's browseable source code.
     def scm = [url: "https://github.com/TouK/excel-export"]
 
-    // resources that are excluded from plugin packaging
-    def pluginExcludes = [
-            "grails-app/views/error.gsp"
-    ]
     def profiles = ['web']
 
     Closure doWithSpring() { {->
