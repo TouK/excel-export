@@ -24,7 +24,7 @@ class WebXlsxExporter extends XlsxExporter {
     }
 
     private WebXlsxExporter setHeaders(HttpServletResponse response, def filename) {
-        response.setHeader("Content-disposition", "attachment; filename=$filename;")
+        response.setHeader("Content-Disposition", "attachment; filename=\"$filename\"")
         response.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         this
     }
