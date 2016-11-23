@@ -41,7 +41,7 @@ class XlsxExporter implements SheetManipulator {
 
     private XSSFWorkbook createOrLoadWorkbook(String fileNameWithPath) {
         if(new File(fileNameWithPath).exists()) {
-            zipPackage = OPCPackage.open(fileNameWithPath);
+            zipPackage = OPCPackage.open(fileNameWithPath)
             return new XSSFWorkbook(zipPackage)
         } else {
             return new XSSFWorkbook()
@@ -54,18 +54,18 @@ class XlsxExporter implements SheetManipulator {
         setUp(workbook)
     }
 
-    private XSSFWorkbook copyAndLoad(String templateNameWithPath, String destinationNameWithPath) {
+    protected XSSFWorkbook copyAndLoad(String templateNameWithPath, String destinationNameWithPath) {
         if(!new File(templateNameWithPath).exists()) {
             throw new IOException("No template file under path: " + templateNameWithPath)
         }
         copy(templateNameWithPath, destinationNameWithPath)
-        zipPackage = OPCPackage.open(destinationNameWithPath);
+        zipPackage = OPCPackage.open(destinationNameWithPath)
         return new XSSFWorkbook(zipPackage)
     }
 
-    private setUp(XSSFWorkbook workbook) {
+    protected setUp(XSSFWorkbook workbook) {
         this.creationHelper = workbook.getCreationHelper()
-        this.dateCellStyle = createDateCellStyle(XlsxExporter.defaultDateFormat)
+        this.dateCellStyle = createDateCellStyle(defaultDateFormat)
     }
 
     Sheet getSheet() {
@@ -90,9 +90,9 @@ class XlsxExporter implements SheetManipulator {
     }
 
     private void copy(String templateNameWithPath, String destinationNameWithPath) {
-        zipPackage = OPCPackage.open(templateNameWithPath);
+        zipPackage = OPCPackage.open(templateNameWithPath)
         XSSFWorkbook originalWorkbook = new XSSFWorkbook(zipPackage)
-        new FileOutputStream(destinationNameWithPath).with { OutputStream it ->
+        new FileOutputStream(destinationNameWithPath).with {
             originalWorkbook.write(it)
         }
     }
