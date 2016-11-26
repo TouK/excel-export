@@ -1,4 +1,3 @@
-
 package pl.touk.excel.export.getters
 
 import org.springframework.context.MessageSource

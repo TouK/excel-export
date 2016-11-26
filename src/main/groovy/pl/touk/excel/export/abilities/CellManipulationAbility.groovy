@@ -1,4 +1,5 @@
 package pl.touk.excel.export.abilities
+
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.util.CellUtil
 import org.apache.poi.xssf.usermodel.XSSFCell

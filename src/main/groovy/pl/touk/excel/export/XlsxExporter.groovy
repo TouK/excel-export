@@ -1,4 +1,5 @@
 package pl.touk.excel.export
+
 import groovy.transform.PackageScope
 import groovy.transform.TypeChecked
 import org.apache.poi.openxml4j.opc.OPCPackage

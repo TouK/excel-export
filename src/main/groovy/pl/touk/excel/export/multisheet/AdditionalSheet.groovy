@@ -1,10 +1,9 @@
 package pl.touk.excel.export.multisheet
 
 import groovy.transform.TypeChecked
-import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.usermodel.CellStyle
 import org.apache.poi.ss.usermodel.CreationHelper
-
+import org.apache.poi.ss.usermodel.Sheet
 import pl.touk.excel.export.abilities.CellManipulationAbility
 import pl.touk.excel.export.abilities.RowManipulationAbility
 

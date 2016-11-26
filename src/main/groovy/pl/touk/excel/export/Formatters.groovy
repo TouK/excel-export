@@ -1,9 +1,9 @@
 package pl.touk.excel.export
 
-import pl.touk.excel.export.getters.Getter
-import pl.touk.excel.export.getters.PropertyGetter
 import pl.touk.excel.export.getters.AsIsPropertyGetter
+import pl.touk.excel.export.getters.Getter
 import pl.touk.excel.export.getters.LongToDatePropertyGetter
+import pl.touk.excel.export.getters.PropertyGetter
 
 class Formatters {
     static PropertyGetter asDate(String propertyName) {

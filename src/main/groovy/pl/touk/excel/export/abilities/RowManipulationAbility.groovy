@@ -3,9 +3,9 @@ package pl.touk.excel.export.abilities
 import org.codehaus.groovy.runtime.NullObject
 import pl.touk.excel.export.Formatters
 import pl.touk.excel.export.getters.Getter
+import pl.touk.excel.export.multisheet.SheetManipulator
 
 import java.sql.Timestamp
-import pl.touk.excel.export.multisheet.SheetManipulator
 
 @Category(SheetManipulator)
 class RowManipulationAbility {
