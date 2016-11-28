@@ -1,6 +1,6 @@
 This is the excel-export Grails plugin using [Apache POI](https://poi.apache.org/)
 
-[![Build Status](https://travis-ci.org/TouK/excel-export.svg?branch=master)](https://travis-ci.org/TouK/excel-export) [ ![Download](https://api.bintray.com/packages/grails-excel-export/plugins/jakubnabrdalik.plugins%3Aexcel-export/images/download.svg) ](https://bintray.com/grails-excel-export/plugins/jakubnabrdalik.plugins%3Aexcel-export/_latestVersion)
+[![Build Status](https://travis-ci.org/TouK/excel-export.svg?branch=master)](https://travis-ci.org/TouK/excel-export) [ ![Download](https://api.bintray.com/packages/grails-excel-export/plugins/excel-export/images/download.svg) ](https://bintray.com/grails-excel-export/plugins/excel-export/_latestVersion)
 
 #What does it do?
 
