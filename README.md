@@ -6,6 +6,8 @@ This is the excel-export Grails plugin using [Apache POI](https://poi.apache.org
 
 This plugin allows for easy exporting of object lists to an Office Open XML workbook (Microsoft Excel 2007+ xlsx) file, while still allowing you to handle the export file on a cell-by-cell basis.
 
+An alternative to this plugin is James Kleeh's [groovy-excel-builder](https://github.com/jameskleeh/groovy-excel-builder) which provides a fantastic Groovy DSL with varying degress of fine-grained control.
+
 #When should I use it?
 
 There are two scenarios for which this plugin was created:
@@ -267,9 +269,24 @@ To understand why you need to exclude anything, please take a look here: http://
 
 If you want a working example, clone this project: https://github.com/TouK/excel-export-samples
 
-#Are there any other libs like this?
+#Alternative plugins and solutions
 
-Yeah, there's plenty of them. But most were too simplistic or too 'automagical' for my needs. Apache POI is pretty simple to use itself (and has fantastic API) but we needed something even simpler for several projects. Also a bit DSL-like so our customers could write reports on their own. After preparing a few getters for our custom objects, this is what we ended up with:
+As noted above, James Kleeh's [groovy-excel-builder](https://github.com/jameskleeh/groovy-excel-builder) provides a wonderful Groovy DSL with varying degress of fine-grained control:
+
+```groovy
+XSSFWorkbook workbook = ExcelBuilder.build {
+    sheet {
+        row {
+            cell("Test 1")
+            cell("Test 2")
+        }
+    }
+}
+
+workbook.write(outputStream)
+```
+
+There are others, but most were too simplistic or too 'automagical' for my needs. Apache POI is pretty simple to use itself (and has fantastic API) but we needed something even simpler for several projects. Also a bit DSL-like so our customers could write reports on their own. After preparing a few getters for our custom objects, this is what we ended up with:
 
 ```groovy
 def withProperties = ["id", "name", "inProduction", "workLogCount", "createdAt", "createdAtDate", asDate("firstEventTime"),
