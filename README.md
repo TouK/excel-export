@@ -251,7 +251,7 @@ Of course there is a corresponding `setCellStyle()` method, but this is a part o
 Like any other Grails plugin, just add to the `dependencies` block of your app's build.gradle file:
 ```groovy
 dependencies {
-    compile "org.grails.plugins:excel-export:2.0.2"
+    compile "org.grails.plugins:excel-export:2.0.3"
 }
 ```
 
