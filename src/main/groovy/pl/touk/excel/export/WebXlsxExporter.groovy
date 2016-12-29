@@ -4,6 +4,10 @@ import javax.servlet.http.HttpServletResponse
 
 class WebXlsxExporter extends XlsxExporter {
 
+    WebXlsxExporter() {
+        super()
+    }
+
     WebXlsxExporter(String templateFileNameWithPath) {
         File tmpFile = File.createTempFile('tmpWebXlsx', filenameSuffix)
         this.fileNameWithPath = tmpFile.getAbsolutePath()
