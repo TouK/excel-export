@@ -2,13 +2,13 @@ This is the excel-export Grails plugin using [Apache POI](https://poi.apache.org
 
 [![Build Status](https://travis-ci.org/TouK/excel-export.svg?branch=master)](https://travis-ci.org/TouK/excel-export) [ ![Download](https://api.bintray.com/packages/grails-excel-export/plugins/excel-export/images/download.svg) ](https://bintray.com/grails-excel-export/plugins/excel-export/_latestVersion)
 
-#What does it do?
+# What does it do?
 
 This plugin allows for easy exporting of object lists to an Office Open XML workbook (Microsoft Excel 2007+ xlsx) file, while still allowing you to handle the export file on a cell-by-cell basis.
 
 An alternative to this plugin is James Kleeh's [groovy-excel-builder](https://github.com/jameskleeh/groovy-excel-builder) which provides a fantastic Groovy DSL with varying degress of fine-grained control.
 
-#When should I use it?
+# When should I use it?
 
 There are two scenarios for which this plugin was created:
 
@@ -20,7 +20,7 @@ In either case, you can export to either a file on disk or to the HTTP response 
 
 This plugin has been used like this in commercial projects.
 
-#How do I use it?
+# How do I use it?
 
 Say, in your controller you have a list of objects, like so:
 
@@ -82,7 +82,7 @@ new WebXlsxExporter().with {
 }
 ```
 
-#What about multiple sheets?
+# What about multiple sheets?
 
 If you'd like to work with multiple sheets, just call `sheet(sheetName)` on your exporter. It returns an instance
 of `AdditionalSheet` that shares the same row/cell manipulation API as the exporter itself:
@@ -129,7 +129,7 @@ And if you'd like to change the name of default sheet, just set it before first 
     }
 ```
 
-#How to export my own types?
+# How to export my own types?
 
 This plugin handles basic property types pretty well (String, Date, Boolean, Timestamp, NullObject, Long, Integer, BigDecimal, BigInteger, Byte, Double, Float, Short). It also handles nested properties, and if everything fails, tries to call `toString()`. But sooner or later, you'll want to export a property of a different type the way you like it.
 What you need to write, is a Getter. Or, better, a `PropertyGetter`. It's super easy, here is example of one that takes Currency and turns it into a String:
@@ -167,7 +167,7 @@ There are two Getters ready for your convenience.
 
 `LongToDatePropertyGetter` gets a long and saves it as a date in xlsx, while `MessageFromPropertyGetter` handles i18n. Speaking of which...
 
-#How to i18n?
+# How to i18n?
 
 To get i18n of headers in your controller, just use controller's existing message method:
 
@@ -201,7 +201,7 @@ def export() {
 
 This will use grails i18n, based on the value of some property (`type` in the example above) of your objects.
 
-#I want fancy diagrams, colours, and other stuff in my Excel!
+# I want fancy diagrams, colours, and other stuff in my Excel!
 
 Making xlsx files look really great with Apache POI is pretty fun but not very efficient. So we have found out that it's easier to create a template manually (in MS Excel or Open Office), load this template in your code, fill it up with data, and hand it back to the user.
 
@@ -234,7 +234,7 @@ new XlsxExporter('/tmp/myReport.xlsx').with {
 
 you are going to overwrite it.
 
-#But I don't want no template (for whatever reason)
+# But I don't want no template (for whatever reason)
 
 Ok, so if you don't want to use a temple, but want to format a cell style directly in the code, you can still do that.
 
@@ -246,7 +246,7 @@ xlsxReporter.getCellAt(0, 0).getCellStyle().getDataFormatString()
 
 Of course there is a corresponding `setCellStyle()` method, but this is a part of the [Apache POI API](https://poi.apache.org/apidocs/org/apache/poi/xssf/usermodel/XSSFCell.html), and is outside the scope of this plugin.
 
-#How to get it installed?
+# How to get it installed?
 
 Like any other Grails plugin, just add to the `dependencies` block of your app's build.gradle file:
 ```groovy
@@ -269,7 +269,7 @@ To understand why you need to exclude anything, please take a look here: http://
 
 If you want a working example, clone this project: https://github.com/TouK/excel-export-samples
 
-#Alternative plugins and solutions
+# Alternative plugins and solutions
 
 As noted above, James Kleeh's [groovy-excel-builder](https://github.com/jameskleeh/groovy-excel-builder) provides a wonderful Groovy DSL with varying degress of fine-grained control:
 
@@ -310,7 +310,7 @@ All the methods in `withProperties` are static imports generating a new instance
 
 Hope it helps.
 
-#License
+# License
 
 Copyright 2012-2014 TouK
 
@@ -326,7 +326,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-#Changes
+# Changes
 
 2.0.1 upgrade poi to 3.12 (thanks to Sergio Maria Matone) and Grails to 3+ (thanks to mansiarora)
 
