@@ -16,7 +16,7 @@ class WebXlsxExporter extends XlsxExporter {
     }
 
     WebXlsxExporter setResponseHeaders(HttpServletResponse response) {
-        setHeaders(response, new Date().format('yyyy-MM-dd_hh-mm-ss') + filenameSuffix)
+        setHeaders(response, new Date().toString() + filenameSuffix)
     }
 
     WebXlsxExporter setResponseHeaders(HttpServletResponse response, Closure filenameClosure) {
